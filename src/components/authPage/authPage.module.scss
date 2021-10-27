@@ -5,6 +5,9 @@
   .blockAuth{
     color: #3D5170;
     margin-top: 9vw;
+    @media screen and (max-width: 767px) {
+      margin-top: 20vw;
+    }
     .blockName{
       display: flex;
       flex-direction: row;
@@ -23,11 +26,14 @@
 
         @media screen and (min-width: 768px) and (max-width: 1023px) {
           font-size: 4vw;
-          line-height: 3.6vw;
+          line-height: 4.8vw;
           margin-left: 2.5vw;
         }
 
         @media screen and (max-width: 767px) {
+          font-size: 6vw;
+          line-height: 7.2vw;
+          margin-left: 3vw;
         }
       }
       img{
@@ -41,6 +47,7 @@
         }
 
         @media screen and (max-width: 767px) {
+          width: 9vw;
         }
       }
     }
@@ -67,6 +74,11 @@
         padding: 2.5vw 2.2vw;
         margin-top: 3vw;
       }
+      @media screen and (max-width: 767px) {
+        width: 70vw;
+        padding: 4vw 3.5vw;
+        margin-top: 5vw;
+      }
       .formAuthName{
         font-style: normal;
         font-weight: normal;
@@ -81,6 +93,10 @@
           font-size: 3vw;
           line-height: 3.27vw;
         }
+        @media screen and (max-width: 767px) {
+          font-size: 5vw;
+          line-height: 5.44vw;
+        }
       }
       .blockInputData{
         display: flex;
@@ -92,6 +108,9 @@
         @media screen and (min-width: 768px) and (max-width: 1023px) {
           margin-top: 5vw;
         }
+        @media screen and (max-width: 767px) {
+          margin-top: 7vw;
+        }
         &:nth-of-type(2){
           margin-top: 1.5vw;
           @media screen and (min-width: 1024px) and (max-width: 1439px) {
@@ -99,6 +118,9 @@
           }
           @media screen and (min-width: 768px) and (max-width: 1023px) {
             margin-top: 2.5vw;
+          }
+          @media screen and (max-width: 767px) {
+            margin-top: 4vw;
           }
         }
         span{
@@ -114,6 +136,10 @@
             font-size: 1.7vw;
             line-height: 1.7vw;
           }
+          @media screen and (max-width: 767px) {
+            font-size: 3vw;
+            line-height: 3vw;
+          }
         }
         input{
           border-radius: 3px;
@@ -123,6 +149,10 @@
           line-height: 1.1vw;
           padding: 0.5vw 0.75vw;
           margin-top: 0.75vw;
+          transition: border ease 0.5s;
+          &:focus{
+            border: 1px solid #007BFF;
+          }
           @media screen and (min-width: 1024px) and (max-width: 1439px) {
             font-size: 1.5vw;
             line-height: 1.5vw;
@@ -133,6 +163,14 @@
             line-height: 2vw;
             padding: 1vw 1.5vw;
           }
+          @media screen and (max-width: 767px) {
+            font-size: 4vw;
+            line-height: 4vw;
+            padding: 1.5vw 2vw;
+          }
+        }
+        .errorInput {
+          border: 1px solid red;
         }
       }
       .blockActions{
@@ -147,8 +185,15 @@
         @media screen and (min-width: 768px) and (max-width: 1023px) {
           margin-top: 3vw;
         }
+        @media screen and (max-width: 767px) {
+          margin-top: 5vw;
+        }
         div{
           cursor: pointer;
+          transition: all ease 0.5s;
+          &:hover{
+            filter: brightness(90%);
+          }
           &:nth-of-type(1){
             font-weight: normal;
             font-size: 1vw;
@@ -161,6 +206,10 @@
             @media screen and (min-width: 768px) and (max-width: 1023px) {
               font-size: 1.7vw;
               line-height: 1.87vw;
+            }
+            @media screen and (max-width: 767px) {
+              font-size: 3vw;
+              line-height: 3.3vw;
             }
           }
           &:nth-of-type(2){
@@ -179,6 +228,11 @@
               font-size: 1.8vw;
               line-height: 2.12vw;
               padding: 1vw 5vw;
+            }
+            @media screen and (max-width: 767px) {
+              font-size: 3.5vw;
+              line-height: 4.1vw;
+              padding: 2vw 9vw;
             }
           }
         }

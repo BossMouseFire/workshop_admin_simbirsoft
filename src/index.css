@@ -69,6 +69,10 @@ ol[class] {
   list-style: none;
 }
 
+input {
+  outline: 0;
+}
+
 /* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
 a:not([class]) {
   text-decoration-skip-ink: auto;
