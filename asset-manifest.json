@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/workshop_admin_simbirsoft/static/css/main.9bec3c77.chunk.css",
+    "main.js": "/workshop_admin_simbirsoft/static/js/main.322e7979.chunk.js",
+    "main.js.map": "/workshop_admin_simbirsoft/static/js/main.322e7979.chunk.js.map",
+    "runtime-main.js": "/workshop_admin_simbirsoft/static/js/runtime-main.83315163.js",
+    "runtime-main.js.map": "/workshop_admin_simbirsoft/static/js/runtime-main.83315163.js.map",
+    "static/js/2.a08fb6ac.chunk.js": "/workshop_admin_simbirsoft/static/js/2.a08fb6ac.chunk.js",
+    "static/js/2.a08fb6ac.chunk.js.map": "/workshop_admin_simbirsoft/static/js/2.a08fb6ac.chunk.js.map",
+    "static/js/3.4f1ef304.chunk.js": "/workshop_admin_simbirsoft/static/js/3.4f1ef304.chunk.js",
+    "static/js/3.4f1ef304.chunk.js.map": "/workshop_admin_simbirsoft/static/js/3.4f1ef304.chunk.js.map",
+    "index.html": "/workshop_admin_simbirsoft/index.html",
+    "static/css/main.9bec3c77.chunk.css.map": "/workshop_admin_simbirsoft/static/css/main.9bec3c77.chunk.css.map",
+    "static/js/2.a08fb6ac.chunk.js.LICENSE.txt": "/workshop_admin_simbirsoft/static/js/2.a08fb6ac.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/workshop_admin_simbirsoft/static/media/Roboto-Regular.a8d6ac03.ttf",
+    "static/media/logo.bc4f3ee8.svg": "/workshop_admin_simbirsoft/static/media/logo.bc4f3ee8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.83315163.js",
+    "static/js/2.a08fb6ac.chunk.js",
+    "static/css/main.9bec3c77.chunk.css",
+    "static/js/main.322e7979.chunk.js"
+  ]
+}
