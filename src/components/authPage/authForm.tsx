@@ -1,20 +1,18 @@
 import React, { ChangeEvent, useRef, useState } from 'react';
 import styles from './authPage.module.scss';
 import { login } from '../../api/api';
+import { setCookie } from '../../utils/utils';
 const AuthForm: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
+  const [loginLocal, setLoginLocal] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const emailInputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const loginLocalInputRef =
+    useRef() as React.MutableRefObject<HTMLInputElement>;
   const passwordInputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const validateEmail = (email: string): boolean => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  };
 
   const onChangeMail = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    if (emailInputRef.current.classList.contains(styles.errorInput)) {
-      emailInputRef.current.classList.remove(styles.errorInput);
+    setLoginLocal(e.target.value);
+    if (loginLocalInputRef.current.classList.contains(styles.errorInput)) {
+      loginLocalInputRef.current.classList.remove(styles.errorInput);
     }
   };
 
@@ -26,15 +24,21 @@ const AuthForm: React.FC = () => {
   };
 
   const onLogin = () => {
-    if (!validateEmail(email)) {
-      emailInputRef.current.classList.add(styles.errorInput);
+    if (!loginLocal) {
+      loginLocalInputRef.current.classList.add(styles.errorInput);
     }
     if (!password) {
       passwordInputRef.current.classList.add(styles.errorInput);
     }
-    if (validateEmail(email) && password) {
-      login(email, password)
-        .then((response) => console.log(response))
+    if (loginLocal && password) {
+      login(loginLocal, password)
+        .then((response) => {
+          const typeToken =
+            response.data.token_type[0].toUpperCase() +
+            response.data.token_type.slice(1);
+          const token = `${typeToken} ${response.data.access_token}`;
+          setCookie('accessToken', token);
+        })
         .catch((error) => console.log(error));
     }
   };
@@ -42,11 +46,11 @@ const AuthForm: React.FC = () => {
     <div className={styles.formAuth}>
       <span className={styles.formAuthName}>Вход</span>
       <div className={styles.blockInputData}>
-        <span>Почта</span>
+        <span>Логин</span>
         <input
           placeholder={'Введите почту'}
           onChange={onChangeMail}
-          ref={emailInputRef}
+          ref={loginLocalInputRef}
         />
       </div>
       <div className={styles.blockInputData}>

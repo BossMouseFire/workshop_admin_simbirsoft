@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { getCookie, tokenEncoder } from '../utils/utils';
+import { IRequestLogin } from '../types/api';
 
 const instanceApiFactory = axios.create({
-  baseURL: 'https://api-factory.simbirsoft1.com',
+  baseURL: 'https://api-factory.simbirsoft1.com/api',
   headers: {
     'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b',
     'Access-Control-Allow-Origin': '*',
@@ -9,7 +11,7 @@ const instanceApiFactory = axios.create({
 });
 
 export const login = (email: string, password: string) => {
-  return instanceApiFactory.post(
+  return instanceApiFactory.post<IRequestLogin>(
     '/auth/login',
     { username: email, password },
     {
@@ -20,15 +22,12 @@ export const login = (email: string, password: string) => {
   );
 };
 
-const tokenEncoder = (): string => {
-  const token = btoa(`${getRandomString()}:4cbcea96de`);
-  return `Basic ${token}`;
-};
-
-const getRandomString = (): string => {
-  let result = '';
-  while (!result) {
-    result = Math.random().toString(36).substring(7);
+export const authCheck = () => {
+  const token = getCookie('accessToken');
+  if (token) {
+    return instanceApiFactory.get('/auth/check', {
+      headers: { Authorization: token },
+    });
   }
-  return result;
+  return null;
 };
