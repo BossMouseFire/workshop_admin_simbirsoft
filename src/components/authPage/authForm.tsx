@@ -2,12 +2,19 @@ import React, { ChangeEvent, useRef, useState } from 'react';
 import styles from './authPage.module.scss';
 import { login } from '../../api/api';
 import { setCookie } from '../../utils/utils';
-const AuthForm: React.FC = () => {
+import { useHistory } from 'react-router-dom';
+
+interface IAuthForm {
+  errorRef: React.MutableRefObject<HTMLInputElement>;
+}
+
+const AuthForm: React.FC<IAuthForm> = ({ errorRef }) => {
   const [loginLocal, setLoginLocal] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const loginLocalInputRef =
     useRef() as React.MutableRefObject<HTMLInputElement>;
   const passwordInputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const history = useHistory();
 
   const onChangeMail = (e: ChangeEvent<HTMLInputElement>) => {
     setLoginLocal(e.target.value);
@@ -38,8 +45,13 @@ const AuthForm: React.FC = () => {
             response.data.token_type.slice(1);
           const token = `${typeToken} ${response.data.access_token}`;
           setCookie('accessToken', token);
+          history.go(0);
         })
-        .catch((error) => console.log(error));
+        .catch(() => {
+          errorRef.current.classList.add(styles.errorAuthActive);
+          loginLocalInputRef.current.classList.add(styles.errorInput);
+          passwordInputRef.current.classList.add(styles.errorInput);
+        });
     }
   };
   return (

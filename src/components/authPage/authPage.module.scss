@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   position: relative;
+  height: 100vh;
   .blockAuth{
     color: #3D5170;
     margin-top: 9vw;
@@ -238,5 +239,37 @@
         }
       }
     }
+  }
+  .errorAuth{
+    display: block;
+    position: fixed;
+    right: 3vw;
+    bottom: 1vw;
+    color: white;
+    background: #EF5350;
+    width: 20vw;
+    border-radius: 4px;
+    padding: 1vw;
+    font-weight: 300;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all ease 0.5s;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      width: 25vw;
+      bottom: 3vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      width: 40vw;
+      bottom: 2vw;
+    }
+    @media screen and (max-width: 767px) {
+      width: 60vw;
+      bottom: 7vw;
+      right: 5vw;
+    }
+  }
+  .errorAuthActive{
+    transform: translateY(0%);
+    opacity: 1;
   }
 }

@@ -1,4 +1,5 @@
 {
+  "homepage": "http://BossMouseFire.github.io/workshop_admin_simbirsoft",
   "name": "practic-simbirsoft-admin",
   "version": "0.1.0",
   "private": true,
@@ -25,6 +26,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -61,6 +64,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "gh-pages": "^3.2.3",
     "prettier": "^2.4.1"
   }
 }
