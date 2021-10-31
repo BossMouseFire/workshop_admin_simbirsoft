@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getCookie, tokenEncoder } from '../utils/utils';
-import { IRequestLogin } from '../types/api';
+import { IRequestAuth } from '../types/auth';
 
 const instanceApiFactory = axios.create({
   baseURL: 'https://api-factory.simbirsoft1.com/api',
@@ -10,8 +10,8 @@ const instanceApiFactory = axios.create({
   },
 });
 
-export const login = (email: string, password: string) => {
-  return instanceApiFactory.post<IRequestLogin>(
+export const loginRequest = (email: string, password: string) => {
+  return instanceApiFactory.post<IRequestAuth>(
     '/auth/login',
     { username: email, password },
     {
@@ -29,5 +29,5 @@ export const authCheck = () => {
       headers: { Authorization: token },
     });
   }
-  return null;
+  throw new Error('Получен пустой токен');
 };

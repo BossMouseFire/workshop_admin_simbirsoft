@@ -11,9 +11,8 @@ const getRandomString = (): string => {
   return result;
 };
 
-export const setCookie = (name: string, val: string) => {
+export const setCookie = (name: string, value: string) => {
   const date = new Date();
-  const value = val;
 
   date.setTime(date.getTime() + 7 * 24 * 60 * 60 * 1000);
 

@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Redirect } from 'react-router-dom';
 import AuthPage from './components/authPage/authPage';
 import PublicRoute from './routes/publicRoute';
 import PrivateRoute from './routes/privateRoute';
 import AdminPage from './components/adminPage/adminPage';
-import { authCheck } from './api/api';
+import { useDispatch } from 'react-redux';
+import { useTypeSelector } from './hooks/useTypeSelector';
+import { getStateAuth } from './store/actionCreators/auth';
 
 const App: React.FC = () => {
-  const [isAuthenticated, stateIsAuthenticated] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useTypeSelector((state) => state.auth);
 
   useEffect(() => {
-    getStateAuth();
+    dispatch(getStateAuth());
   }, [isAuthenticated]);
 
-  const getStateAuth = () => {
-    authCheck()
-      ?.then(() => stateIsAuthenticated(true))
-      .catch(() => stateIsAuthenticated(false));
-  };
   return (
     <Switch>
       <PublicRoute path={'/login'} isAuthenticated={isAuthenticated}>

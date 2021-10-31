@@ -1,57 +1,49 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import styles from './authPage.module.scss';
-import { login } from '../../api/api';
-import { setCookie } from '../../utils/utils';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/actionCreators/auth';
+import { useTypeSelector } from '../../hooks/useTypeSelector';
+import cn from 'classnames';
+import cnBind from 'classnames/bind';
+const cx = cnBind.bind(styles);
 
-interface IAuthForm {
-  errorRef: React.MutableRefObject<HTMLInputElement>;
-}
-
-const AuthForm: React.FC<IAuthForm> = ({ errorRef }) => {
+const AuthForm: React.FC = () => {
   const [loginLocal, setLoginLocal] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const loginLocalInputRef =
-    useRef() as React.MutableRefObject<HTMLInputElement>;
-  const passwordInputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const history = useHistory();
+  const [loginStateError, setLoginStateError] = useState<boolean>(false);
+  const [passwordStateError, setPasswordStateError] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const { loading, error } = useTypeSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (error) {
+      setLoginStateError(true);
+      setPasswordStateError(true);
+    }
+  }, [error]);
 
   const onChangeMail = (e: ChangeEvent<HTMLInputElement>) => {
     setLoginLocal(e.target.value);
-    if (loginLocalInputRef.current.classList.contains(styles.errorInput)) {
-      loginLocalInputRef.current.classList.remove(styles.errorInput);
+    if (loginStateError) {
+      setLoginStateError(false);
     }
   };
-
   const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    if (passwordInputRef.current.classList.contains(styles.errorInput)) {
-      passwordInputRef.current.classList.remove(styles.errorInput);
+    if (passwordStateError) {
+      setPasswordStateError(false);
     }
   };
 
   const onLogin = () => {
     if (!loginLocal) {
-      loginLocalInputRef.current.classList.add(styles.errorInput);
+      setLoginStateError(true);
     }
     if (!password) {
-      passwordInputRef.current.classList.add(styles.errorInput);
+      setPasswordStateError(true);
     }
     if (loginLocal && password) {
-      login(loginLocal, password)
-        .then((response) => {
-          const typeToken =
-            response.data.token_type[0].toUpperCase() +
-            response.data.token_type.slice(1);
-          const token = `${typeToken} ${response.data.access_token}`;
-          setCookie('accessToken', token);
-          history.go(0);
-        })
-        .catch(() => {
-          errorRef.current.classList.add(styles.errorAuthActive);
-          loginLocalInputRef.current.classList.add(styles.errorInput);
-          passwordInputRef.current.classList.add(styles.errorInput);
-        });
+      dispatch(login(loginLocal, password));
     }
   };
   return (
@@ -60,9 +52,9 @@ const AuthForm: React.FC<IAuthForm> = ({ errorRef }) => {
       <div className={styles.blockInputData}>
         <span>Логин</span>
         <input
-          placeholder={'Введите почту'}
+          placeholder={'Введите логин'}
+          className={cn(cx({ errorInput: loginStateError }))}
           onChange={onChangeMail}
-          ref={loginLocalInputRef}
         />
       </div>
       <div className={styles.blockInputData}>
@@ -70,14 +62,29 @@ const AuthForm: React.FC<IAuthForm> = ({ errorRef }) => {
         <input
           type={'password'}
           placeholder={'Введите пароль'}
+          className={cn(cx({ errorInput: passwordStateError }))}
           onChange={onChangePassword}
-          ref={passwordInputRef}
         />
       </div>
       <div className={styles.blockActions}>
         <div>Запросить доступ</div>
-        <div onClick={onLogin}>Войти</div>
+        <div
+          className={cn(cx({ disableButtonLogin: loading }))}
+          onClick={onLogin}
+        >
+          Войти
+        </div>
       </div>
+      {loading && (
+        <div className={styles.formAuthLoading}>
+          <div className={styles.loader}>
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
