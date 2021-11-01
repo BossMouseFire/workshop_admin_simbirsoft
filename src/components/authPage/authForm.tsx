@@ -5,6 +5,7 @@ import { login } from '../../store/actionCreators/auth';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import cn from 'classnames';
 import cnBind from 'classnames/bind';
+import Loader from '../otherComponents/loader';
 const cx = cnBind.bind(styles);
 
 const AuthForm: React.FC = () => {
@@ -77,12 +78,7 @@ const AuthForm: React.FC = () => {
       </div>
       {loading && (
         <div className={styles.formAuthLoading}>
-          <div className={styles.loader}>
-            <div />
-            <div />
-            <div />
-            <div />
-          </div>
+          <Loader size={10} />
         </div>
       )}
     </div>
