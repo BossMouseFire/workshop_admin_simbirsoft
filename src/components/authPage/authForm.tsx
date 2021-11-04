@@ -5,7 +5,7 @@ import { login } from '../../store/actionCreators/auth';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import cn from 'classnames';
 import cnBind from 'classnames/bind';
-import Loader from '../otherComponents/loader';
+import Loader from '../loader/loader';
 const cx = cnBind.bind(styles);
 
 const AuthForm: React.FC = () => {

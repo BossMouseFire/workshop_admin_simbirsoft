@@ -1,9 +1,10 @@
 import React from 'react';
+import Menu from './menu/menu';
 
 const AdminPage = () => {
   return (
     <div>
-      <h1>Страница администрации</h1>
+      <Menu />
     </div>
   );
 };

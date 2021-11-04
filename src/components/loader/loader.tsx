@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './otherComponents.module.scss';
+import styles from './loader.module.scss';
 import cn from 'classnames';
 
 interface ILoader {
