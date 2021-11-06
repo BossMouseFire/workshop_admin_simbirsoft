@@ -5,11 +5,11 @@ import { IProps } from '../types/route';
 const PrivateRoute: React.FC<IProps> = ({
   children,
   isAuthenticated,
-  path,
+  ...props
 }) => {
   return (
     <Route
-      path={path}
+      {...props}
       render={({ location }) =>
         isAuthenticated ? (
           children
