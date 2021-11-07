@@ -1,0 +1,37 @@
+.button{
+  color: white;
+  background: #E9ECEF;
+  border-radius: 4px;
+  font-size: 1.1vw;
+  line-height: 1.3vw;
+  padding: 0.5vw 3vw;
+  cursor: pointer;
+  border: none;
+  transition: all ease 0.5s;
+  &:hover{
+    filter: brightness(90%);
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1439px) {
+    font-size: 1.496vw;
+    line-height: 1.768vw;
+    padding: 0.75vw 4.5vw;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    font-size: 1.8vw;
+    line-height: 2.12vw;
+    padding: 1vw 5vw;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 3.5vw;
+    line-height: 4.1vw;
+    padding: 2vw 9vw;
+  }
+}
+
+.blue{
+  background: #007BFF;
+}
+
+.red {
+  background: #C4183C;
+}

@@ -5,7 +5,7 @@ import { ReactComponent as Pen } from '../../../assets/pen.svg';
 import { ReactComponent as List } from '../../../assets/list.svg';
 import { ReactComponent as Order } from '../../../assets/order.svg';
 import Action from './action';
-const Menu: React.FC = () => {
+export const Menu: React.FC = () => {
   return (
     <div className={styles.menu}>
       <div className={styles.head}>
@@ -27,5 +27,3 @@ const Menu: React.FC = () => {
     </div>
   );
 };
-
-export default Menu;

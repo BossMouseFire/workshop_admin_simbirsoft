@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getCookie, tokenEncoder } from '../utils/utils';
-import { IRequestAuth } from '../types/auth';
+import { IRequestAuth, IResponseCheck } from '../types/auth';
 
 const instanceApiFactory = axios.create({
   baseURL: 'https://api-factory.simbirsoft1.com/api',
@@ -25,7 +25,7 @@ export const loginRequest = (email: string, password: string) => {
 export const authCheck = () => {
   const token = getCookie('accessToken');
   if (token) {
-    return instanceApiFactory.get('/auth/check', {
+    return instanceApiFactory.get<IResponseCheck>('/auth/check', {
       headers: { Authorization: token },
     });
   }

@@ -2,12 +2,12 @@ import {
   AuthAction,
   AuthActionTypes,
   AuthState,
-  IRequestAuth,
+  IResponseCheck,
 } from '../../types/auth';
 
 const initialState: AuthState = {
   isAuthenticated: false,
-  dataAuth: {} as IRequestAuth,
+  dataAuth: {} as IResponseCheck,
   loading: false,
   error: null,
 };
@@ -21,27 +21,28 @@ export const authReducer = (
       return { ...state, loading: true };
     case AuthActionTypes.AUTH_LOGIN_SUCCESS:
       return {
-        isAuthenticated: action.payload.isAuthenticated,
-        dataAuth: action.payload.dataAuth,
+        ...state,
         loading: false,
         error: null,
       };
     case AuthActionTypes.AUTH_LOGIN_ERROR:
       return {
         isAuthenticated: false,
-        dataAuth: {} as IRequestAuth,
+        dataAuth: {} as IResponseCheck,
         loading: false,
         error: action.payload,
       };
     case AuthActionTypes.AUTH_CHECK_SUCCESS:
       return {
-        ...state,
         isAuthenticated: true,
+        dataAuth: action.payload,
+        loading: false,
+        error: null,
       };
     case AuthActionTypes.AUTH_CHECK_ERROR:
       return {
         isAuthenticated: false,
-        dataAuth: {} as IRequestAuth,
+        dataAuth: {} as IResponseCheck,
         loading: false,
         error: null,
       };

@@ -1,8 +1,6 @@
 import React from 'react';
-import Menu from './menu/menu';
-import Footer from './footer/footer';
+import { Menu, Footer, Navbar } from '../../components/adminPage/';
 import styles from './adminPage.module.scss';
-import Navbar from './navbar/navbar';
 const AdminPage = () => {
   return (
     <div className={styles.adminPage}>

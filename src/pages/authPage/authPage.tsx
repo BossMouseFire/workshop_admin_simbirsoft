@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './authPage.module.scss';
 import logo from '../../assets/logo.svg';
-import AuthForm from './authForm';
+import { AuthForm } from '../../components/authPage';
 import cn from 'classnames';
 import cnBind from 'classnames/bind';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
