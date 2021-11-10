@@ -6,7 +6,6 @@ import { ReactComponent as Notices } from '../../../assets/notices.svg';
 import dropArrow from '../../../assets/dropdown.svg';
 import anonim from '../../../assets/anonim.svg';
 import { useTypeSelector } from '../../../hooks/useTypeSelector';
-import { Button } from '../../ui';
 
 export const Navbar: React.FC = () => {
   const { dataAuth } = useTypeSelector((state) => state.auth);
@@ -34,13 +33,6 @@ export const Navbar: React.FC = () => {
           onClick={() => setIsDropDown((state) => !state)}
         >
           <img src={dropArrow} alt={'стрелка'} />
-        </div>
-        <div
-          className={cn(styles.profileUpper, {
-            [styles.activeProfileUpper]: isDropDown,
-          })}
-        >
-          <Button color={'blue'}>Выйти</Button>
         </div>
       </div>
     </div>

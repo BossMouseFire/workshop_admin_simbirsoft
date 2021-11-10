@@ -13,6 +13,10 @@
     height: 9vw;
     padding: 0 4vw;
   }
+  @media screen and (max-width: 767px) {
+    height: 15vw;
+    padding: 0 6vw;
+  }
   .search{
     display: flex;
     flex-direction: row;
@@ -24,6 +28,9 @@
     }
     @media screen and (min-width: 768px) and (max-width: 1023px) {
       width: 55%;
+    }
+    @media screen and (max-width: 767px) {
+      width: 50%;
     }
     input{
       border: none;
@@ -44,6 +51,10 @@
         font-size: 2.2vw;
         line-height: 2.42vw;
       }
+      @media screen and (max-width: 767px) {
+        font-size: 3.2vw;
+        line-height: 3.52vw;
+      }
     }
     svg{
       @media screen and (min-width: 1024px) and (max-width: 1439px) {
@@ -53,6 +64,10 @@
       @media screen and (min-width: 768px) and (max-width: 1023px) {
         width: 2.5vw;
         height: 3vw;
+      }
+      @media screen and (max-width: 767px) {
+        width: 4vw;
+        height: 3.5vw;
       }
     }
   }
@@ -69,6 +84,9 @@
     }
     @media screen and (min-width: 768px) and (max-width: 1023px) {
       width: 13%;
+    }
+    @media screen and (max-width: 767px) {
+      width: 15%;
     }
     svg{
       cursor: pointer;
@@ -90,6 +108,9 @@
     @media screen and (min-width: 768px) and (max-width: 1023px) {
       width: 32%;
     }
+    @media screen and (max-width: 767px) {
+      width: 35%;
+    }
     .picture{
       width: 3vw;
       margin-left: 2vw;
@@ -104,6 +125,10 @@
       @media screen and (min-width: 768px) and (max-width: 1023px) {
         width: 6vw;
         margin-left: 4vw;
+      }
+      @media screen and (max-width: 767px) {
+        width: 8vw;
+        margin-left: 6vw;
       }
     }
     span{
@@ -123,6 +148,9 @@
         line-height: 2.42vw;
         margin-left: 2vw;
       }
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
     }
     .dropArrow{
       width: 0.8vw;
@@ -137,6 +165,9 @@
       }
       @media screen and (min-width: 768px) and (max-width: 1023px) {
         width: 2vw;
+      }
+      @media screen and (max-width: 767px) {
+        width: 4vw;
       }
     }
     .activeDropArrow{

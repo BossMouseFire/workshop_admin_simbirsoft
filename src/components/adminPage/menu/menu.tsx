@@ -14,6 +14,7 @@ export const Menu: React.FC = () => {
         <div className={styles.head}>
           <img src={logo} alt={'Логотип'} />
           <span>Need for car</span>
+          <div className={styles.closeCross} onClick={() => setActive(false)} />
         </div>
         <Action>
           <Pen />
@@ -30,7 +31,7 @@ export const Menu: React.FC = () => {
       </div>
       <div
         className={styles.buttonSetActiveMenu}
-        onClick={() => setActive((state) => !state)}
+        onClick={() => setActive(true)}
       >
         <span />
       </div>
