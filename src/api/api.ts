@@ -58,3 +58,31 @@ export const getOrders = (page: number, limit: number) => {
   }
   throw new Error('Получен пустой токен');
 };
+
+export const getOrdersByParams = (
+  page: number,
+  limit: number,
+  cityId?: string,
+  statusId?: string
+) => {
+  const token = getCookie('accessToken');
+
+  const params: string[] = [];
+
+  if (cityId !== undefined) {
+    params.push(`cityId=${cityId}`);
+  }
+  if (statusId !== undefined) {
+    params.push(`orderStatusId=${statusId}`);
+  }
+
+  if (token) {
+    return instanceApiFactory.get<IResponseOrders>(
+      `/db/order?page=${page}&limit=${limit}&${params.join('&')}`,
+      {
+        headers: { Authorization: token },
+      }
+    );
+  }
+  throw new Error('Получен пустой токен');
+};

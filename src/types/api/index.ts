@@ -55,4 +55,5 @@ export interface ICar {
 
 export interface IResponseOrders {
   data: IOrder[];
+  count: number;
 }

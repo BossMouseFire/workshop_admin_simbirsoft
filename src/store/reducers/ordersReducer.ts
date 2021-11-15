@@ -6,6 +6,7 @@ import {
 
 const initialState: OrdersState = {
   orders: [],
+  maxCount: 0,
   loading: false,
   error: null,
 };
@@ -16,11 +17,16 @@ export const ordersReducer = (
 ): OrdersState => {
   switch (action.type) {
     case OrdersActionTypes.FETCH_ORDERS:
-      return { orders: [], loading: true, error: null };
+      return { orders: [], maxCount: 0, loading: true, error: null };
     case OrdersActionTypes.FETCH_ORDERS_SUCCESS:
-      return { orders: action.payload, loading: false, error: null };
+      return {
+        orders: action.payload.orders,
+        maxCount: action.payload.maxCount,
+        loading: false,
+        error: null,
+      };
     case OrdersActionTypes.FETCH_ORDERS_ERROR:
-      return { orders: [], loading: false, error: action.payload };
+      return { orders: [], maxCount: 0, loading: false, error: action.payload };
     default:
       return state;
   }

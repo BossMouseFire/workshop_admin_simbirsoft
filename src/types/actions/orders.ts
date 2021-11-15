@@ -5,9 +5,9 @@ import { ICar, IPoint } from '../api';
 export interface IOrder {
   id: string;
   orderStatusId: IOrderStatus;
-  cityId: ICity;
-  pointId: IPoint;
-  carId: ICar;
+  cityId?: ICity;
+  pointId?: IPoint;
+  carId?: ICar;
   color: string;
   dateFrom: number;
   dateTo: number;
@@ -19,6 +19,7 @@ export interface IOrder {
 
 export interface OrdersState {
   orders: IOrder[];
+  maxCount: number;
   loading: boolean;
   error: string | null;
 }
@@ -35,7 +36,10 @@ interface FetchOrdersAction {
 
 interface FetchOrdersActionSuccess {
   type: OrdersActionTypes.FETCH_ORDERS_SUCCESS;
-  payload: IOrder[];
+  payload: {
+    orders: IOrder[];
+    maxCount: number;
+  };
 }
 
 interface FetchOrdersActionError {

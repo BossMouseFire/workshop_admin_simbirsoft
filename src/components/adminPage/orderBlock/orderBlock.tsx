@@ -1,80 +1,108 @@
-import React, { useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import styles from './orderBlock.module.scss';
-import { Button, CheckBox, Select } from '../../ui';
+import { Button, Select } from '../../ui';
 import { useTypeSelector } from '../../../hooks/useTypeSelector';
 import { useDispatch } from 'react-redux';
 import { fetchCities } from '../../../store/actionCreators/cities';
 import { fetchStatuses } from '../../../store/actionCreators/orderStatuses';
-import { fetchOrders } from '../../../store/actionCreators/orders';
-import { ButtonsBlock } from '../../ui/buttonsBlock/buttonsBlock';
+import { fetchOrdersByParams } from '../../../store/actionCreators/orders';
+import { OrdersList } from '../';
 export const OrderBlock: React.FC = () => {
   const dispatch = useDispatch();
   const { cities } = useTypeSelector((state) => state.cities);
   const { statuses } = useTypeSelector((state) => state.orderStatuses);
-  const { orders } = useTypeSelector((state) => state.orders);
+  const { orders, maxCount } = useTypeSelector((state) => state.orders);
+  const [arrayPages, setArrayPages] = useState<number[]>([]);
+  const [page, setPage] = useState<number>(0);
+  const [stateCity, setStateCity] = useState<string | undefined>(undefined);
+  const [stateStatus, setStateStatus] = useState<string | undefined>(undefined);
+  const limit = 3;
   useEffect(() => {
-    dispatch(fetchOrders(1, 1));
+    dispatch(fetchOrdersByParams(page, limit));
     dispatch(fetchCities());
     dispatch(fetchStatuses());
   }, []);
 
-  const convertDate = (dateInMs: number): string => {
-    const date = new Date(dateInMs);
-    const day = date.getDay() > 9 ? date.getDay() : `0${date.getDay()}`;
-    const month = date.getMonth() > 9 ? date.getMonth() : `0${date.getMonth()}`;
-    const hours = date.getHours() > 9 ? date.getHours() : `0${date.getHours()}`;
-    const minutes =
-      date.getMinutes() > 9 ? date.getMinutes() : `0${date.getMinutes()}`;
-    return `${day}.${month}.${date.getFullYear()} ${hours}:${minutes}`;
+  useEffect(() => {
+    if (orders.length) {
+      editPage(page);
+    }
+  }, [orders]);
+
+  const changeOrders = (page: number) => {
+    dispatch(fetchOrdersByParams(page, limit, stateCity, stateStatus));
+    setPage(page);
+  };
+
+  const editPage = (page: number): void => {
+    const currentElem = page * limit;
+    const array: number[] = [];
+    const minNum = Math.min((maxCount - currentElem) / limit, 5);
+    console.log(maxCount);
+    for (let i = page; i < page + minNum; i++) {
+      array.push(i);
+    }
+    setArrayPages(array);
+  };
+
+  const prevPage = (): void => {
+    if (page > 0) {
+      changeOrders(page - 1);
+    }
+  };
+
+  const nextPage = (): void => {
+    if (page < Math.ceil(maxCount / limit) - 1) {
+      console.log(page, Math.ceil(maxCount / limit));
+      changeOrders(page + 1);
+    }
+  };
+
+  const onChangeCity = (e: ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    if (!value) {
+      setStateCity(undefined);
+    } else {
+      setStateCity(value);
+    }
+  };
+
+  const onChangeStatus = (e: ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    if (!value) {
+      setStateStatus(undefined);
+    } else {
+      setStateStatus(value);
+    }
+  };
+
+  const changeOrdersByParams = () => {
+    changeOrders(0);
+    setPage(0);
   };
   return (
     <div className={styles.wrapper}>
       <span className={styles.title}>Заказы</span>
       <div className={styles.ordersBlock}>
         <div className={styles.upper}>
-          <Select data={cities} />
-          <Select data={statuses} />
-          <Button color={'blue'}>Применить</Button>
+          <Select data={cities} onChange={onChangeCity} />
+          <Select data={statuses} onChange={onChangeStatus} />
+          <Button color={'blue'} onClick={changeOrdersByParams}>
+            Применить
+          </Button>
         </div>
-        {orders.map((order) => (
-          <div className={styles.orderCard} key={order.id}>
-            <div className={styles.imgBlock}>
-              <img
-                src={`https://api-factory.simbirsoft1.com/${order.carId.thumbnail.path}`}
-                alt={'автомобиль'}
-              />
-            </div>
-            <div className={styles.orderInfo}>
-              <p>
-                <span>{order.carId.name}</span> в{' '}
-                <span>{order.cityId.name}</span>, {order.pointId.address}
-              </p>
-              <p>
-                {convertDate(order.dateFrom)} - {convertDate(order.dateTo)}
-              </p>
-              <p>
-                Цвет: <span>{order.color}</span>
-              </p>
-            </div>
-            <div className={styles.addInfo}>
-              <div className={styles.checkBlock}>
-                <CheckBox checked={order.isFullTank} />
-                <span>Полный бак</span>
+        <OrdersList orders={orders} />
+        <div className={styles.lower}>
+          <div className={styles.pagination}>
+            <div onClick={prevPage}>«</div>
+            {arrayPages.map((pageNum, index) => (
+              <div key={index} onClick={() => changeOrders(pageNum)}>
+                {pageNum + 1}
               </div>
-              <div className={styles.checkBlock}>
-                <CheckBox checked={order.isNeedChildChair} />
-                <span>Детсткое кресло</span>
-              </div>
-              <div className={styles.checkBlock}>
-                <CheckBox checked={order.isRightWheel} />
-                <span>Правый руль</span>
-              </div>
-            </div>
-            <div className={styles.totalPrice}>{order.price}₽</div>
-            <ButtonsBlock />
+            ))}
+            <div onClick={nextPage}>»</div>
           </div>
-        ))}
-        <div className={styles.lower} />
+        </div>
       </div>
     </div>
   );

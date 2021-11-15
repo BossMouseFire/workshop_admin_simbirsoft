@@ -1,6 +1,12 @@
 .select{
   position: relative;
   width: 10vw;
+  @media screen and (min-width: 1024px) and (max-width: 1439px) {
+    width: 15vw;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    width: 20vw;
+  }
   select {
     width: 100%;
     background: none;
@@ -16,6 +22,15 @@
     line-height: 1vw;
     letter-spacing: -0.345714px;
     color: #868E96;
+
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      font-size: 1.496vw;
+      line-height: 1.768vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      font-size: 1.8vw;
+      line-height: 2.12vw;
+    }
   }
   &:after{
     content: "";
@@ -26,6 +41,16 @@
     border-style: solid;
     border-width: 0 3px 3px 3px;
     border-color: transparent transparent black transparent;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      border-width: 0 5px 5px 5px;
+      bottom: 1.6vw;
+      right: 1vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      border-width: 0 6px 6px 6px;
+      bottom: 1.8vw;
+      right: 1.5vw;
+    }
   }
   &:before{
     content: "";
@@ -36,5 +61,15 @@
     border-style: solid;
     border-width: 3px 3px 0 3px;
     border-color: black transparent transparent transparent;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      border-width: 5px 5px 0 5px;
+      bottom: 0.9vw;
+      right: 1vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      border-width: 6px 6px 0 6px;
+      bottom: .8vw;
+      right: 1.5vw;
+    }
   }
 }
