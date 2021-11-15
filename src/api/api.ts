@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { getCookie, tokenEncoder } from '../utils/utils';
-import { IRequestAuth, IResponseCheck } from '../types/auth';
+import {
+  IRequestAuth,
+  IResponseCars,
+  IResponseCheck,
+  IResponseOrders,
+  IResponseOrderStatuses,
+} from '../types/api';
 
 const instanceApiFactory = axios.create({
   baseURL: 'https://api-factory.simbirsoft1.com/api',
@@ -28,6 +34,27 @@ export const authCheck = () => {
     return instanceApiFactory.get<IResponseCheck>('/auth/check', {
       headers: { Authorization: token },
     });
+  }
+  throw new Error('Получен пустой токен');
+};
+
+export const getCities = () => {
+  return instanceApiFactory.get<IResponseCars>('/db/city');
+};
+
+export const getOrderStatuses = () => {
+  return instanceApiFactory.get<IResponseOrderStatuses>('/db/orderStatus');
+};
+
+export const getOrders = (page: number, limit: number) => {
+  const token = getCookie('accessToken');
+  if (token) {
+    return instanceApiFactory.get<IResponseOrders>(
+      `/db/order?page=${page}&limit=${limit}`,
+      {
+        headers: { Authorization: token },
+      }
+    );
   }
   throw new Error('Получен пустой токен');
 };

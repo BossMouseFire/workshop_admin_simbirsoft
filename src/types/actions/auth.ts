@@ -1,18 +1,5 @@
-export interface IRequestAuth {
-  token_type: string;
-  access_token: string;
-  expires_in: string;
-  refresh_token: string;
-  user_id: string;
-}
-export interface IResponseCheck {
-  id: string;
-  username: string;
-  role: {
-    id: string;
-    name: string;
-  };
-}
+import { IResponseCheck } from '../api';
+
 export interface AuthState {
   isAuthenticated: boolean;
   dataAuth: IResponseCheck;

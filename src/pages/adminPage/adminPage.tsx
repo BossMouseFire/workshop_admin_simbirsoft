@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Footer, Navbar } from '../../components/adminPage/';
+import { Menu, Footer, Navbar, OrderBlock } from '../../components/adminPage/';
 import styles from './adminPage.module.scss';
 const AdminPage = () => {
   return (
@@ -7,6 +7,7 @@ const AdminPage = () => {
       <Menu />
       <div className={styles.mainPart}>
         <Navbar />
+        <OrderBlock />
         <Footer />
       </div>
     </div>

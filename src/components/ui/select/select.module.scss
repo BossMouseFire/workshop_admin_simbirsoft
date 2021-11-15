@@ -1,0 +1,40 @@
+.select{
+  position: relative;
+  width: 10vw;
+  select {
+    width: 100%;
+    background: none;
+    border: 0.5px solid #BECAD6;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 0.58vw 0 0.58vw 1vw;
+    appearance: none;
+    outline: none;
+
+    font-weight: normal;
+    font-size: 0.9vw;
+    line-height: 1vw;
+    letter-spacing: -0.345714px;
+    color: #868E96;
+  }
+  &:after{
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 1.2vw;
+    right: 0.5vw;
+    border-style: solid;
+    border-width: 0 3px 3px 3px;
+    border-color: transparent transparent black transparent;
+  }
+  &:before{
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0.83vw;
+    right: 0.5vw;
+    border-style: solid;
+    border-width: 3px 3px 0 3px;
+    border-color: black transparent transparent transparent;
+  }
+}

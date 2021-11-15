@@ -2,8 +2,9 @@ import {
   AuthAction,
   AuthActionTypes,
   AuthState,
-  IResponseCheck,
-} from '../../types/auth';
+} from '../../types/actions/auth';
+
+import { IResponseCheck } from '../../types/api';
 
 const initialState: AuthState = {
   isAuthenticated: false,

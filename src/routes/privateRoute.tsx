@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { IProps } from '../types/route';
+import { IProps } from '../types/components/route';
 
 const PrivateRoute: React.FC<IProps> = ({
   children,

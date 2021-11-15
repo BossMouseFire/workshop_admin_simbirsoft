@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { AuthAction, AuthActionTypes } from '../../types/auth';
+import { AuthAction, AuthActionTypes } from '../../types/actions/auth';
 import { authCheck, loginRequest } from '../../api/api';
 import { setCookie } from '../../utils/utils';
 
