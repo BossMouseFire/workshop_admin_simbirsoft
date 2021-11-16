@@ -28,6 +28,22 @@ export const loginRequest = (email: string, password: string) => {
   );
 };
 
+export const logoutRequest = () => {
+  const token = getCookie('accessToken');
+  if (token) {
+    return instanceApiFactory.post(
+      '/auth/logout',
+      {},
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+  }
+  throw new Error('Получен пустой токен');
+};
+
 export const authCheck = () => {
   const token = getCookie('accessToken');
   if (token) {

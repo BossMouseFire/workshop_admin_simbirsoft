@@ -1,13 +1,29 @@
-import React from 'react';
-import { Menu, Footer, Navbar, OrderBlock } from '../../components/adminPage/';
+import React, { useState } from 'react';
+import {
+  Menu,
+  Footer,
+  Navbar,
+  OrderBlock,
+  ErrorBlock,
+} from '../../components/adminPage/';
 import styles from './adminPage.module.scss';
 const AdminPage = () => {
+  const [section, setSection] = useState(2);
+
+  const changeSection = () => {
+    switch (section) {
+      case 2:
+        return <OrderBlock />;
+      default:
+        return <ErrorBlock />;
+    }
+  };
   return (
     <div className={styles.adminPage}>
-      <Menu />
+      <Menu setSection={setSection} activeSection={section} />
       <div className={styles.mainPart}>
         <Navbar />
-        <OrderBlock />
+        {changeSection()}
         <Footer />
       </div>
     </div>

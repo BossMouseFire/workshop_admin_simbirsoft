@@ -7,6 +7,9 @@
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     width: 20vw;
   }
+  @media screen and (max-width: 767px) {
+    width: 30vw;
+  }
   select {
     width: 100%;
     background: none;
@@ -31,6 +34,10 @@
       font-size: 1.8vw;
       line-height: 2.12vw;
     }
+    @media screen and (max-width: 767px) {
+      font-size: 3vw;
+      line-height: 6.5vw;
+    }
   }
   &:after{
     content: "";
@@ -51,6 +58,11 @@
       bottom: 1.8vw;
       right: 1.5vw;
     }
+    @media screen and (max-width: 767px) {
+      border-width: 0 6px 6px 6px;
+      bottom: 4vw;
+      right: 1vw;
+    }
   }
   &:before{
     content: "";
@@ -70,6 +82,11 @@
       border-width: 6px 6px 0 6px;
       bottom: .8vw;
       right: 1.5vw;
+    }
+    @media screen and (max-width: 767px) {
+      border-width: 6px 6px 0 6px;
+      bottom: 2.3vw;
+      right: 1vw;
     }
   }
 }

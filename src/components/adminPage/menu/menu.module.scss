@@ -169,6 +169,15 @@
       }
     }
   }
+  .activeAction{
+    box-shadow: inset 0px -1px 0px #E1E5EB, inset 4px 0px 0px #007BFF;
+    span{
+      color: #007BFF;
+    }
+    svg{
+      fill: #007BFF;;
+    }
+  }
 }
 
 .menuActive{
@@ -179,17 +188,26 @@
   @media screen and (max-width: 1023px) {
     position: absolute;
     left: 0;
-    top: 20%;
+    top: 50%;
     width: 5vw;
     height: 5vw;
     cursor: pointer;
     background: #0EC261;
     padding-left: 0.8vw;
     z-index: 1;
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      transform: translateX(-70%);
+      transition: all 0.4s ease;
+      &:hover {
+        transform: translateX(0%);
+      }
+    }
     @media screen and (max-width: 767px) {
-      width: 7vw;
-      height: 7vw;
+      width: 9vw;
+      height: 9vw;
       padding-left: 1.1vw;
+      top: auto;
+      bottom: 20%;
     }
     span,
     &:before,

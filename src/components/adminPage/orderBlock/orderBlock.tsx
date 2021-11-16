@@ -7,11 +7,14 @@ import { fetchCities } from '../../../store/actionCreators/cities';
 import { fetchStatuses } from '../../../store/actionCreators/orderStatuses';
 import { fetchOrdersByParams } from '../../../store/actionCreators/orders';
 import { OrdersList } from '../';
+import { Loader } from '../../other';
 export const OrderBlock: React.FC = () => {
   const dispatch = useDispatch();
   const { cities } = useTypeSelector((state) => state.cities);
   const { statuses } = useTypeSelector((state) => state.orderStatuses);
-  const { orders, maxCount } = useTypeSelector((state) => state.orders);
+  const { orders, maxCount, loading } = useTypeSelector(
+    (state) => state.orders
+  );
   const [arrayPages, setArrayPages] = useState<number[]>([]);
   const [page, setPage] = useState<number>(0);
   const [stateCity, setStateCity] = useState<string | undefined>(undefined);
@@ -38,7 +41,6 @@ export const OrderBlock: React.FC = () => {
     const currentElem = page * limit;
     const array: number[] = [];
     const minNum = Math.min((maxCount - currentElem) / limit, 5);
-    console.log(maxCount);
     for (let i = page; i < page + minNum; i++) {
       array.push(i);
     }
@@ -91,7 +93,15 @@ export const OrderBlock: React.FC = () => {
             Применить
           </Button>
         </div>
-        <OrdersList orders={orders} />
+        {orders.length !== 0 && <OrdersList orders={orders} />}
+        {loading && (
+          <div className={styles.formLoader}>
+            <Loader size={10} />
+          </div>
+        )}
+        {!loading && !orders.length && (
+          <div className={styles.infoAbsent}>Информация отсутствует</div>
+        )}
         <div className={styles.lower}>
           <div className={styles.pagination}>
             <div onClick={prevPage}>«</div>

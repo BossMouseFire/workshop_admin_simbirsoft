@@ -22,12 +22,18 @@
       @media screen and (min-width: 768px) and (max-width: 1023px) {
         width: 20%;
       }
+      @media screen and (max-width: 767px) {
+        width: 20%;
+      }
     }
     .orderInfo{
       display: flex;
       flex-direction: column;
       justify-content: space-around;
       width: 30%;
+      @media screen and (max-width: 767px) {
+        width: 32%;
+      }
       p{
         color: #889098;
         font-size: 1vw;
@@ -41,6 +47,10 @@
           font-size: 2vw;
           line-height: 2.5vw;
         }
+        @media screen and (max-width: 767px) {
+          font-size: 3vw;
+          line-height: 3.3vw;
+        }
         span{
           color: #121212;
         }
@@ -51,10 +61,7 @@
       flex-direction: column;
       justify-content: space-around;
       width: 10%;
-      @media screen and (min-width: 1024px) and (max-width: 1439px) {
-        width: 15%;
-      }
-      @media screen and (min-width: 768px) and (max-width: 1023px) {
+      @media screen and (max-width: 1439px) {
         width: 15%;
       }
       .checkBlock{
@@ -75,6 +82,11 @@
             font-size: 1.6vw;
             line-height: 1.92vw;
             margin-left: 1.5vw;
+          }
+          @media screen and (max-width: 767px) {
+            font-size: 2vw;
+            line-height: 2.4vw;
+            margin-left: 2vw;
           }
         }
         .activeSpan{
@@ -97,6 +109,10 @@
       @media screen and (min-width: 768px) and (max-width: 1023px) {
         font-size: 2.5vw;
         line-height: 2.9vw;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 3vw;
+        line-height: 3.5vw;
       }
     }
   }

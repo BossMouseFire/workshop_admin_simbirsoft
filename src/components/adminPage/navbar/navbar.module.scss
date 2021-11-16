@@ -17,6 +17,44 @@
     height: 15vw;
     padding: 0 6vw;
   }
+  .dropPanel{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 15%;
+    padding: 1vw;
+    transform: translateY(150%);
+    opacity: 0;
+    right: 2vw;
+    background: white;
+    box-shadow: 0px 2px 0px rgba(90, 97, 105, 0.11), 0px 4px 8px rgba(90, 97, 105, 0.12), 0px 10px 10px rgba(90, 97, 105, 0.06), 0px 7px 70px rgba(90, 97, 105, 0.1);
+    transition: all .4s ease;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      width: 20%;
+      padding: 1.5vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      width: 20%;
+      padding: 1.7vw;
+      right: 4vw;
+    }
+    @media screen and (max-width: 767px) {
+      width: 30%;
+      padding: 2.6vw;
+      right: 6vw;
+    }
+    span{
+      cursor: pointer;
+      color: #5A6169;
+      transition: all .4s ease;
+      &:hover{
+        color: black;
+      }
+    }
+  }
+  .activeDropPanel{
+    opacity: 1;
+  }
   .search{
     display: flex;
     flex-direction: row;

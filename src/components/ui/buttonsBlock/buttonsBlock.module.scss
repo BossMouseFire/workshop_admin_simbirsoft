@@ -24,6 +24,11 @@
       padding: 1vw 1.5vw 1vw 0.8vw;
       width: 100%;
     }
+    @media screen and (max-width: 767px) {
+      font-size: 2.5vw;
+      padding: 1.3vw 1.8vw 1.3vw 1vw;
+      width: 100%;
+    }
     svg{
       margin-right: 0.2vw;
     }
