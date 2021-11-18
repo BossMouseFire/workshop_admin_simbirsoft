@@ -22,6 +22,7 @@ export interface IButton
   > {
   children: React.ReactNode;
   color?: string;
+  size: 's' | 'm';
 }
 
 export interface ISelect

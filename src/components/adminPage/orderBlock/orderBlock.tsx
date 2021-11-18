@@ -1,20 +1,22 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import styles from './orderBlock.module.scss';
 import { Button, Select } from '../../ui';
-import { useTypeSelector } from '../../../hooks/useTypeSelector';
 import { useDispatch } from 'react-redux';
 import { fetchCities } from '../../../store/actionCreators/cities';
 import { fetchStatuses } from '../../../store/actionCreators/orderStatuses';
 import { fetchOrdersByParams } from '../../../store/actionCreators/orders';
 import { OrdersList } from '../';
 import { Loader } from '../../other';
+import {
+  useSelectCities,
+  useSelectStatuses,
+  useSelectOrders,
+} from '../../../selectors/';
 export const OrderBlock: React.FC = () => {
   const dispatch = useDispatch();
-  const { cities } = useTypeSelector((state) => state.cities);
-  const { statuses } = useTypeSelector((state) => state.orderStatuses);
-  const { orders, maxCount, loading } = useTypeSelector(
-    (state) => state.orders
-  );
+  const { cities } = useSelectCities();
+  const { statuses } = useSelectStatuses();
+  const { orders, maxCount, loading } = useSelectOrders();
   const [arrayPages, setArrayPages] = useState<number[]>([]);
   const [page, setPage] = useState<number>(0);
   const [stateCity, setStateCity] = useState<string | undefined>(undefined);
@@ -55,7 +57,6 @@ export const OrderBlock: React.FC = () => {
 
   const nextPage = (): void => {
     if (page < Math.ceil(maxCount / limit) - 1) {
-      console.log(page, Math.ceil(maxCount / limit));
       changeOrders(page + 1);
     }
   };
@@ -89,7 +90,7 @@ export const OrderBlock: React.FC = () => {
         <div className={styles.upper}>
           <Select data={cities} onChange={onChangeCity} />
           <Select data={statuses} onChange={onChangeStatus} />
-          <Button color={'blue'} onClick={changeOrdersByParams}>
+          <Button size={'s'} color={'blue'} onClick={changeOrdersByParams}>
             Применить
           </Button>
         </div>

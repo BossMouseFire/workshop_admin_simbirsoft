@@ -73,6 +73,7 @@ export const AuthForm: React.FC = () => {
         <Button
           className={cn(cx({ disableButtonLogin: loading }))}
           color={'blue'}
+          size={'m'}
           onClick={onLogin}
         >
           Войти
