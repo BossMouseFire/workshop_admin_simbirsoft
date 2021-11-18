@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/workshop_admin_simbirsoft/static/css/main.7644c436.chunk.css",
-    "main.js": "/workshop_admin_simbirsoft/static/js/main.9053692d.chunk.js",
-    "main.js.map": "/workshop_admin_simbirsoft/static/js/main.9053692d.chunk.js.map",
+    "main.css": "/workshop_admin_simbirsoft/static/css/main.3bd7c312.chunk.css",
+    "main.js": "/workshop_admin_simbirsoft/static/js/main.fef0eef6.chunk.js",
+    "main.js.map": "/workshop_admin_simbirsoft/static/js/main.fef0eef6.chunk.js.map",
     "runtime-main.js": "/workshop_admin_simbirsoft/static/js/runtime-main.012042b2.js",
     "runtime-main.js.map": "/workshop_admin_simbirsoft/static/js/runtime-main.012042b2.js.map",
-    "static/js/2.b15f27d4.chunk.js": "/workshop_admin_simbirsoft/static/js/2.b15f27d4.chunk.js",
-    "static/js/2.b15f27d4.chunk.js.map": "/workshop_admin_simbirsoft/static/js/2.b15f27d4.chunk.js.map",
+    "static/js/2.20a35baa.chunk.js": "/workshop_admin_simbirsoft/static/js/2.20a35baa.chunk.js",
+    "static/js/2.20a35baa.chunk.js.map": "/workshop_admin_simbirsoft/static/js/2.20a35baa.chunk.js.map",
     "static/js/3.62394a7e.chunk.js": "/workshop_admin_simbirsoft/static/js/3.62394a7e.chunk.js",
     "static/js/3.62394a7e.chunk.js.map": "/workshop_admin_simbirsoft/static/js/3.62394a7e.chunk.js.map",
     "index.html": "/workshop_admin_simbirsoft/index.html",
-    "static/css/main.7644c436.chunk.css.map": "/workshop_admin_simbirsoft/static/css/main.7644c436.chunk.css.map",
-    "static/js/2.b15f27d4.chunk.js.LICENSE.txt": "/workshop_admin_simbirsoft/static/js/2.b15f27d4.chunk.js.LICENSE.txt",
+    "static/css/main.3bd7c312.chunk.css.map": "/workshop_admin_simbirsoft/static/css/main.3bd7c312.chunk.css.map",
+    "static/js/2.20a35baa.chunk.js.LICENSE.txt": "/workshop_admin_simbirsoft/static/js/2.20a35baa.chunk.js.LICENSE.txt",
     "static/media/index.css": "/workshop_admin_simbirsoft/static/media/Roboto-Regular.a8d6ac03.ttf",
     "static/media/anonim.125d9726.svg": "/workshop_admin_simbirsoft/static/media/anonim.125d9726.svg",
     "static/media/checkGreen.da66ee6c.svg": "/workshop_admin_simbirsoft/static/media/checkGreen.da66ee6c.svg",
@@ -27,8 +27,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.012042b2.js",
-    "static/js/2.b15f27d4.chunk.js",
-    "static/css/main.7644c436.chunk.css",
-    "static/js/main.9053692d.chunk.js"
+    "static/js/2.20a35baa.chunk.js",
+    "static/css/main.3bd7c312.chunk.css",
+    "static/js/main.fef0eef6.chunk.js"
   ]
 }
