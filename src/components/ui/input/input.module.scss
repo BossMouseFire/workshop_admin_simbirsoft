@@ -1,0 +1,31 @@
+.input{
+  border-radius: 3px;
+  border: 0.5px solid #BECAD6;
+  font-weight: normal;
+  font-size: 1vw;
+  line-height: 1.1vw;
+  padding: 0.5vw 0.75vw;
+  margin-top: 0.75vw;
+  transition: border ease 0.5s;
+  &:focus{
+    border: 1px solid #007BFF;
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1439px) {
+    font-size: 1.5vw;
+    line-height: 1.5vw;
+    padding: 0.75vw 1vw;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    font-size: 2vw;
+    line-height: 2vw;
+    padding: 1vw 1.5vw;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 4vw;
+    line-height: 4vw;
+    padding: 1.5vw 2vw;
+  }
+}
+.errorInput {
+  border: 1px solid red;
+}

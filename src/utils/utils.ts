@@ -36,3 +36,22 @@ export const deleteCookie = (name: string) => {
 
   document.cookie = name + '=; expires=' + date.toUTCString() + '; path=/';
 };
+
+export const convertDate = (dateInMs: number): string => {
+  const date = new Date(dateInMs);
+  const day = date.getDay() > 9 ? date.getDay() : `0${date.getDay()}`;
+  const month = date.getMonth() > 9 ? date.getMonth() : `0${date.getMonth()}`;
+  const hours = date.getHours() > 9 ? date.getHours() : `0${date.getHours()}`;
+  const minutes =
+    date.getMinutes() > 9 ? date.getMinutes() : `0${date.getMinutes()}`;
+  return `${day}.${month}.${date.getFullYear()} ${hours}:${minutes}`;
+};
+
+export const convertUrlImg = (path: string | undefined) => {
+  if (typeof path === 'string') {
+    if (path.indexOf('file') !== -1) {
+      return `https://api-factory.simbirsoft1.com${path}`;
+    }
+  }
+  return path;
+};

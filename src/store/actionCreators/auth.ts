@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { AuthAction, AuthActionTypes } from '../../types/auth';
+import { AuthAction, AuthActionTypes } from '../../types/actions/auth';
 import { authCheck, loginRequest } from '../../api/api';
 import { setCookie } from '../../utils/utils';
 
@@ -14,13 +14,9 @@ export const login = (login: string, password: string) => {
         response.data.token_type.slice(1);
       const token = `${typeToken} ${response.data.access_token}`;
       setCookie('accessToken', token);
-
+      history.go(0);
       dispatch({
         type: AuthActionTypes.AUTH_LOGIN_SUCCESS,
-        payload: {
-          isAuthenticated: true,
-          dataAuth: response.data,
-        },
       });
     } catch (error) {
       dispatch({
@@ -35,9 +31,10 @@ export const getStateAuth = () => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       dispatch({ type: AuthActionTypes.AUTH_LOADING });
-      await authCheck();
+      const response = await authCheck();
       dispatch({
         type: AuthActionTypes.AUTH_CHECK_SUCCESS,
+        payload: response.data,
       });
     } catch (error) {
       dispatch({

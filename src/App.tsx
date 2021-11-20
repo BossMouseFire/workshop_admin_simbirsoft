@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Switch, Redirect } from 'react-router-dom';
-import AuthPage from './components/authPage/authPage';
+import AuthPage from './pages/authPage/authPage';
 import PublicRoute from './routes/publicRoute';
 import PrivateRoute from './routes/privateRoute';
-import AdminPage from './components/adminPage/adminPage';
+import AdminPage from './pages/adminPage/adminPage';
 import { useDispatch } from 'react-redux';
 import { useTypeSelector } from './hooks/useTypeSelector';
 import { getStateAuth } from './store/actionCreators/auth';

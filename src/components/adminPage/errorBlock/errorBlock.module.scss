@@ -1,0 +1,77 @@
+.errorBlock{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100% - 9.8vw);
+  overflow-y: scroll;
+  @media screen and (min-width: 1024px) and (max-width: 1439px) {
+    padding-top: 3vw;
+    height: calc(100% - 14vw);
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    height: calc(100% - 18vw);
+  }
+  @media screen and (max-width: 767px) {
+    padding-top: 5vw;
+    height: calc(100% - 30vw);
+  }
+  span{
+    text-align: center;
+    &:nth-of-type(1){
+      font-weight: 500;
+      font-size: 5.5vw;
+      line-height: 7vw;
+      color: #CACEDB;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 6.5vw;
+        line-height: 9vw;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        font-size: 8vw;
+        line-height: 11vw;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 10vw;
+        line-height: 13vw;
+      }
+    }
+    &:nth-of-type(2){
+      font-weight: normal;
+      font-size: 3.6vw;
+      line-height: 5vw;
+      color: #3D5170;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 5vw;
+        line-height: 7vw;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        font-size: 6vw;
+        line-height: 8vw;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 7vw;
+        line-height: 9vw;
+      }
+    }
+    &:nth-of-type(3){
+      font-weight: normal;
+      font-size: 1.5vw;
+      line-height: 3vw;
+      color: #818EA3;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 2vw;
+        line-height: 4.5vw;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        font-size: 2.5vw;
+        line-height: 6vw;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 3.3vw;
+        line-height: 8vw;
+      }
+    }
+  }
+}

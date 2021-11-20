@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './otherComponents.module.scss';
+import styles from './loader.module.scss';
 import cn from 'classnames';
 
 interface ILoader {
   size: number;
 }
 
-const Loader: React.FC<ILoader> = ({ size }) => {
+export const Loader: React.FC<ILoader> = ({ size }) => {
   const getClassSize = () => {
     switch (size) {
       case 10:
@@ -22,5 +22,3 @@ const Loader: React.FC<ILoader> = ({ size }) => {
     </div>
   );
 };
-
-export default Loader;
