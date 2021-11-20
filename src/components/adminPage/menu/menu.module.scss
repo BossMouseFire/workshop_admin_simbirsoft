@@ -1,0 +1,237 @@
+.menu{
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  height: 100vh;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 75px rgba(90, 97, 105, 0.11), 0px 2px 4px rgba(90, 97, 105, 0.12), 0px 7.5px 11px rgba(90, 97, 105, 0.1), 0px 3.5px 17.5px rgba(165, 182, 201, 0.1);
+  z-index: 2;
+  @media screen and (min-width: 1024px) and (max-width: 1439px) {
+    width: 25vw;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    position: absolute;
+    transform: translateX(-100%);
+    transition: all ease 0.4s;
+    width: 35vw;
+  }
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    transform: translateX(-100%);
+    transition: all ease 0.4s;
+    width: 50vw;
+  }
+  .head{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 4.9vw;
+    box-shadow: 0px 1px 0px #E1E5EB;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      height: 7vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      height: 9vw;
+    }
+    @media screen and (max-width: 767px) {
+      height: 15vw;
+    }
+    .closeCross{
+      @media screen and (max-width: 1023px) {
+        width: 2.5vw;
+        height: 2.5vw;
+        margin-left: 9vw;
+        cursor: pointer;
+        @media screen and (max-width: 767px) {
+          width: 4vw;
+          height: 4vw;
+        }
+        &:before, &:after {
+          position: absolute;
+          content: ' ';
+          width: 0.2vw;
+          height: 2.5vw;
+          background-color: #ABB6BF;
+          @media screen and (max-width: 767px) {
+            width: 0.3vw;
+            height: 4vw;
+          }
+        }
+        &:before {
+          transform: rotate(45deg);
+        }
+        &:after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    span{;
+      font-weight: normal;
+      font-size: 1.1vw;
+      line-height: 1.24vw;
+      letter-spacing: -0.234375px;
+      color: #3D5170;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 1.6vw;
+        line-height: 1.8vw;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        font-size: 2.2vw;
+        line-height: 2.48vw;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 3.52vw;
+        line-height: 3.872vw;
+      }
+    }
+    img{
+      width: 1.46vw;
+      margin-right: 0.5vw;
+      margin-left: 3.6vw;;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        width: 2.2vw;
+        margin-left: 4.4vw;
+        margin-right: .7vw;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        width: 3vw;
+        margin-right: 1vw;
+        margin-left: 5vw;
+      }
+      @media screen and (max-width: 767px) {
+        width: 6vw;
+        margin-right: 2vw;
+        margin-left: 7vw;
+      }
+    }
+  }
+  .action{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 4.2vw;
+    cursor: pointer;
+    box-shadow: inset 0px -1px 0px #E1E5EB;
+    transition: all ease 0.4s;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      height: 6vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      height: 8vw;
+    }
+    @media screen and (max-width: 767px) {
+      height: 12vw;
+    }
+    span{
+      font-weight: normal;
+      font-size: 1vw;
+      line-height: 1.1vw;
+      letter-spacing: -0.234375px;
+      color: #3D5170;
+      margin-left: 0.9vw;
+      transition: all ease 0.4s;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 1.6vw;
+        margin-left: 1.2vw;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        font-size: 2.2vw;
+        margin-left: 1.2vw;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 3.2vw;
+        line-height: 3.52vw;
+        margin-left: 2vw;
+      }
+    }
+    svg{
+      margin-left: 2.08vw;
+      transition: all ease 0.4s;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        margin-left: 2.5vw;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        margin-left: 3vw;
+      }
+      @media screen and (max-width: 767px) {
+        margin-left: 4vw;
+      }
+    }
+    &:hover{
+      box-shadow: inset 0px -1px 0px #E1E5EB, inset 4px 0px 0px #007BFF;
+      span{
+        color: #007BFF;
+      }
+      svg{
+        fill: #007BFF;;
+      }
+    }
+  }
+  .activeAction{
+    box-shadow: inset 0px -1px 0px #E1E5EB, inset 4px 0px 0px #007BFF;
+    span{
+      color: #007BFF;
+    }
+    svg{
+      fill: #007BFF;;
+    }
+  }
+}
+
+.menuActive{
+  transform: translateX(0%);
+}
+
+.buttonSetActiveMenu {
+  @media screen and (max-width: 1023px) {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 5vw;
+    height: 5vw;
+    cursor: pointer;
+    background: #0EC261;
+    padding-left: 0.8vw;
+    z-index: 1;
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      transform: translateX(-70%);
+      transition: all 0.4s ease;
+      &:hover {
+        transform: translateX(0%);
+      }
+    }
+    @media screen and (max-width: 767px) {
+      width: 7vw;
+      height: 7vw;
+      padding-left: 1.1vw;
+      top: auto;
+      bottom: 20%;
+    }
+    span,
+    &:before,
+    &:after {
+      position: absolute;
+      height: 0.5vw;
+      width: 70%;
+      border-radius: 10px;
+      background-color: white;
+      @media screen and (max-width: 767px) {
+        height: 0.7vw;
+      }
+    }
+    &:before {
+      content: "";
+      top: 17%;
+    }
+    &:after {
+      content: "";
+      bottom: 17%;
+    }
+    span {
+      top: 50%;
+      transform: scale(1) translate(0px, -50%);
+    }
+  }
+}

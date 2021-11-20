@@ -1,14 +1,8 @@
-export interface IRequestAuth {
-  token_type: string;
-  access_token: string;
-  expires_in: string;
-  refresh_token: string;
-  user_id: string;
-}
+import { IResponseCheck } from '../api';
 
 export interface AuthState {
   isAuthenticated: boolean;
-  dataAuth: IRequestAuth;
+  dataAuth: IResponseCheck;
   loading: boolean;
   error: null | string;
 }
@@ -27,10 +21,6 @@ interface AuthLoadingAction {
 
 interface AuthLoginSuccessAction {
   type: AuthActionTypes.AUTH_LOGIN_SUCCESS;
-  payload: {
-    isAuthenticated: boolean;
-    dataAuth: IRequestAuth;
-  };
 }
 
 interface AuthLoginErrorAction {
@@ -40,6 +30,7 @@ interface AuthLoginErrorAction {
 
 interface AuthCheckSuccessAction {
   type: AuthActionTypes.AUTH_CHECK_SUCCESS;
+  payload: IResponseCheck;
 }
 
 interface AuthCheckErrorAction {
