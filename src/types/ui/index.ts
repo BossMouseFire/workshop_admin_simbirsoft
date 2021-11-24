@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import { ICity } from '../actions/cities';
 import { IOrderStatus } from '../actions/orderStatuses';
+import { ICategory } from '../actions/categories';
 
 export interface IInput
   extends DetailedHTMLProps<
@@ -33,7 +34,7 @@ export interface ISelect
   data: dataSelect;
 }
 
-type dataSelect = ICity[] | IOrderStatus[];
+type dataSelect = ICity[] | IOrderStatus[] | ICategory[];
 
 export type ICheckBox = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,

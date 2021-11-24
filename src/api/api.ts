@@ -2,6 +2,8 @@ import axios from 'axios';
 import { getCookie, tokenEncoder } from '../utils/utils';
 import {
   IRequestAuth,
+  IRequestCars,
+  IRequestCategories,
   IResponseCars,
   IResponseCheck,
   IResponseOrders,
@@ -101,4 +103,30 @@ export const getOrdersByParams = (
     );
   }
   throw new Error('Получен пустой токен');
+};
+
+export const getCars = async (page: number, limit: number) => {
+  return await instanceApiFactory.get<IRequestCars>(
+    `/api/db/car?page=${page}&limit=${limit}`
+  );
+};
+
+export const getCategories = async () => {
+  return await instanceApiFactory.get<IRequestCategories>('/api/db/category');
+};
+
+export const getCarsByParams = async (
+  page: number,
+  limit: number,
+  categoryId?: string
+) => {
+  const params: string[] = [];
+
+  if (categoryId != undefined) {
+    params.push(`categoryId=${categoryId}`);
+  }
+
+  return await instanceApiFactory.get<IRequestCars>(
+    `/api/db/car?page=${page}&limit=${limit}&${params.join('&')}`
+  );
 };

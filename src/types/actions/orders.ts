@@ -1,6 +1,7 @@
 import { IOrderStatus } from './orderStatuses';
 import { ICity } from './cities';
-import { ICar, IPoint } from '../api';
+import { IPoint } from '../api';
+import { ICar } from './cars';
 
 export interface IOrder {
   id: string;
