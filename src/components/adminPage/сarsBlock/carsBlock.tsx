@@ -14,6 +14,8 @@ import Pagination from '../pagination/pagination';
 import { Loader } from '../../other';
 import { Button, Select } from '../../ui';
 import { fetchCategories } from '../../../store/actionCreators/categories';
+import FormLoader from '../layout/formLoader';
+import InfoError from '../layout/infoError';
 
 export const CarsBlock = () => {
   const dispatch = useDispatch();
@@ -45,11 +47,21 @@ export const CarsBlock = () => {
   const refreshCars = () => {
     setIsRefresh((state) => !state);
   };
+
+  const cancelChange = () => {
+    setStateCategory(undefined);
+    refreshCars();
+  };
+
   return (
     <Layout nameLayout={'Список авто'}>
       <Upper>
-        <Select data={categories} onChange={onChangeCategory} />
-        <Button size={'s'} color={'red'} onClick={refreshCars}>
+        <Select
+          data={categories}
+          onChange={onChangeCategory}
+          allPoints={'Все категории'}
+        />
+        <Button size={'s'} color={'red'} onClick={cancelChange}>
           Сбросить
         </Button>
         <Button size={'s'} color={'blue'} onClick={refreshCars}>
@@ -85,13 +97,11 @@ export const CarsBlock = () => {
       )}
 
       {loading && (
-        <div className={styles.formLoader}>
+        <FormLoader>
           <Loader size={10} />
-        </div>
+        </FormLoader>
       )}
-      {!loading && !cars.length && (
-        <div className={styles.infoAbsent}>Информация отсутствует</div>
-      )}
+      {!loading && !cars.length && <InfoError />}
 
       <Lower>
         <Pagination

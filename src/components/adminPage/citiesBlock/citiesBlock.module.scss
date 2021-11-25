@@ -1,0 +1,58 @@
+.citiesBlock{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 70%;
+  padding-left: 3%;
+  padding-top: 3%;
+  @media screen and (max-width: 767px) {
+    padding-top: 5%;
+    padding-left: 5%;
+  }
+  .title{
+    font-size: 1.5vw;
+    line-height: 1.65vw;
+    color: #3D5170;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      font-size: 2.2vw;
+      line-height: 2.42vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      font-size: 2.5vw;
+      line-height: 2.75vw;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 4vw;
+      line-height: 4.4vw;
+    }
+  }
+  .points{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1%;
+    @media screen and (max-width: 767px) {
+      margin-left: 2%;
+    }
+    span{
+      font-size: 1.1vw;
+      line-height: 1.21vw;
+      color: #818EA3;
+      margin-top: 1%;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 1.7vw;
+        line-height: 1.87vw;
+        margin-top: 2%;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        font-size: 2vw;
+        line-height: 2.2vw;
+        margin-top: 2%;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 3vw;
+        line-height: 3.3vw;
+        margin-top: 3%;
+      }
+    }
+  }
+}

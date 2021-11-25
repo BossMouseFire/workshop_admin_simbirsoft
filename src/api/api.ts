@@ -4,6 +4,7 @@ import {
   IRequestAuth,
   IRequestCars,
   IRequestCategories,
+  IRequestPoints,
   IResponseCars,
   IResponseCheck,
   IResponseOrders,
@@ -129,4 +130,12 @@ export const getCarsByParams = async (
   return await instanceApiFactory.get<IRequestCars>(
     `/api/db/car?page=${page}&limit=${limit}&${params.join('&')}`
   );
+};
+
+export const getPointsToCity = async (id: string) => {
+  return await instanceApiFactory.get<IRequestPoints>('/api/db/point', {
+    params: {
+      cityId: id,
+    },
+  });
 };

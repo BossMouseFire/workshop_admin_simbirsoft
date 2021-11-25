@@ -32,6 +32,7 @@ export interface ISelect
     HTMLSelectElement
   > {
   data: dataSelect;
+  allPoints?: string;
 }
 
 type dataSelect = ICity[] | IOrderStatus[] | ICategory[];

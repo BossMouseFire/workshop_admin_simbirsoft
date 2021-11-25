@@ -3,6 +3,7 @@ import { IOrderStatus } from '../actions/orderStatuses';
 import { IOrder } from '../actions/orders';
 import { ICar } from '../actions/cars';
 import { ICategory } from '../actions/categories';
+import { IPoint } from '../actions/points';
 
 export interface IRequestAuth {
   token_type: string;
@@ -28,12 +29,6 @@ export interface IResponseOrderStatuses {
   data: IOrderStatus[];
 }
 
-export interface IPoint {
-  id: string;
-  name: string;
-  address: string;
-}
-
 export interface IResponseOrders {
   data: IOrder[];
   count: number;
@@ -46,4 +41,8 @@ export interface IRequestCars {
 
 export interface IRequestCategories {
   data: ICategory[];
+}
+
+export interface IRequestPoints {
+  data: IPoint[];
 }

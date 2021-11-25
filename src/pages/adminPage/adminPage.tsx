@@ -6,6 +6,7 @@ import {
   OrderBlock,
   ErrorBlock,
   CarsBlock,
+  CitiesBlock,
 } from '../../components/adminPage/';
 import styles from './adminPage.module.scss';
 const AdminPage = () => {
@@ -17,6 +18,8 @@ const AdminPage = () => {
         return <CarsBlock />;
       case 2:
         return <OrderBlock />;
+      case 3:
+        return <CitiesBlock />;
       default:
         return <ErrorBlock />;
     }

@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import styles from './orderBlock.module.scss';
 import { Button, Select } from '../../ui';
 import { useDispatch } from 'react-redux';
 import { fetchCities } from '../../../store/actionCreators/cities';
@@ -7,20 +6,20 @@ import { fetchStatuses } from '../../../store/actionCreators/orderStatuses';
 import { fetchOrdersByParams } from '../../../store/actionCreators/orders';
 import { OrdersList } from './ordersList/ordersList';
 import { Loader } from '../../other';
-import {
-  useSelectCities,
-  useSelectStatuses,
-  useSelectOrders,
-} from '../../../selectors/';
 import Pagination from '../pagination/pagination';
 import Layout from '../layout/layout';
 import Upper from '../layout/upper';
 import Lower from '../layout/lower';
+import FormLoader from '../layout/formLoader';
+import InfoError from '../layout/infoError';
+import { useTypeSelector } from '../../../hooks/useTypeSelector';
 export const OrderBlock: React.FC = () => {
   const dispatch = useDispatch();
-  const { cities } = useSelectCities();
-  const { statuses } = useSelectStatuses();
-  const { orders, maxCount, loading } = useSelectOrders();
+  const { cities } = useTypeSelector((state) => state.cities);
+  const { statuses } = useTypeSelector((state) => state.orderStatuses);
+  const { orders, maxCount, loading } = useTypeSelector(
+    (state) => state.orders
+  );
   const [stateCity, setStateCity] = useState<string | undefined>(undefined);
   const [stateStatus, setStateStatus] = useState<string | undefined>(undefined);
   const [isRefresh, setIsRefresh] = useState<boolean>(true);
@@ -53,28 +52,42 @@ export const OrderBlock: React.FC = () => {
     setIsRefresh((state) => !state);
   };
 
+  const cancelChange = () => {
+    setStateCity(undefined);
+    setStateStatus(undefined);
+    refreshOrders();
+  };
+
   const changeOrders = (newPage: number) => {
     dispatch(fetchOrdersByParams(newPage, limit, stateCity, stateStatus));
   };
-
   return (
     <Layout nameLayout={'Заказы'}>
       <Upper>
-        <Select data={cities} onChange={onChangeCity} />
-        <Select data={statuses} onChange={onChangeStatus} />
+        <Select
+          data={cities}
+          onChange={onChangeCity}
+          allPoints={'Все города'}
+        />
+        <Select
+          data={statuses}
+          onChange={onChangeStatus}
+          allPoints={'Все статусы'}
+        />
+        <Button size={'s'} color={'red'} onClick={cancelChange}>
+          Сбросить
+        </Button>
         <Button size={'s'} color={'blue'} onClick={refreshOrders}>
           Применить
         </Button>
       </Upper>
       {orders.length !== 0 && <OrdersList orders={orders} />}
       {loading && (
-        <div className={styles.formLoader}>
+        <FormLoader>
           <Loader size={10} />
-        </div>
+        </FormLoader>
       )}
-      {!loading && !orders.length && (
-        <div className={styles.infoAbsent}>Информация отсутствует</div>
-      )}
+      {!loading && !orders.length && <InfoError />}
       <Lower>
         <Pagination
           entities={orders}
