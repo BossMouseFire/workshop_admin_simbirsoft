@@ -1,6 +1,7 @@
 .carsBlock{
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 70%;
   span{
@@ -48,7 +49,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    height: 22.5%;
+    height: 20%;
     span{
       width: 8%;
       font-weight: 500;
@@ -62,7 +63,7 @@
       }
     }
     div{
-      width: 9%;
+      width: 7.5%;
       @media screen and (max-width: 767px) {
         display: none;
       }

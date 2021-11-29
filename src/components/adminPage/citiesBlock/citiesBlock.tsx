@@ -50,18 +50,10 @@ export const CitiesBlock: React.FC = () => {
       </Upper>
       {cities.length !== 0 && points.length != 0 && (
         <div className={styles.citiesBlock}>
-          <span className={styles.title}>
-            Адреса пунктов в городе {points[0].cityId.name}
-          </span>
-          {points.length != 0 && (
-            <div className={styles.points}>
-              {points.map((point) => (
-                <span key={point.id} className={styles.info}>
-                  {point.address}
-                </span>
-              ))}
-            </div>
-          )}
+          <div className={styles.titleBlock}>
+            <span>Город</span>
+            <span>Адреса</span>
+          </div>
         </div>
       )}
       {loading && (
