@@ -19,6 +19,10 @@
   @include loaderSize(10vw, 10vw);
 }
 
+.loaderSize_8{
+  @include loaderSize(8vw, 8vw);
+}
+
 .loader {
   display: block;
   position: relative;

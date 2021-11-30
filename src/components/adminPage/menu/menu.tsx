@@ -33,6 +33,10 @@ export const Menu: React.FC<IMenu> = ({ setSection, activeSection }) => {
           <Order />
           <span>Заказы</span>
         </Action>
+        <Action active={activeSection === 3} onClick={() => setSection(3)}>
+          <List />
+          <span>Список городов</span>
+        </Action>
       </div>
       <div
         className={styles.buttonSetActiveMenu}

@@ -5,6 +5,8 @@ import {
   Navbar,
   OrderBlock,
   ErrorBlock,
+  CarsBlock,
+  CitiesBlock,
 } from '../../components/adminPage/';
 import styles from './adminPage.module.scss';
 const AdminPage = () => {
@@ -12,8 +14,12 @@ const AdminPage = () => {
 
   const changeSection = () => {
     switch (section) {
+      case 1:
+        return <CarsBlock />;
       case 2:
         return <OrderBlock />;
+      case 3:
+        return <CitiesBlock />;
       default:
         return <ErrorBlock />;
     }

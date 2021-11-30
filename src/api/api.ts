@@ -2,6 +2,9 @@ import axios from 'axios';
 import { getCookie, tokenEncoder } from '../utils/utils';
 import {
   IRequestAuth,
+  IRequestCars,
+  IRequestCategories,
+  IRequestPoints,
   IResponseCars,
   IResponseCheck,
   IResponseOrders,
@@ -54,8 +57,16 @@ export const authCheck = () => {
   throw new Error('Получен пустой токен');
 };
 
-export const getCities = () => {
-  return instanceApiFactory.get<IResponseCars>('/db/city');
+export const getCities = (page?: number, limit?: number) => {
+  const params: string[] = [];
+
+  if (page !== undefined) {
+    params.push(`page=${page}`);
+  }
+  if (limit !== undefined) {
+    params.push(`limit=${limit}`);
+  }
+  return instanceApiFactory.get<IResponseCars>(`/db/city?${params.join('&')}`);
 };
 
 export const getOrderStatuses = () => {
@@ -101,4 +112,48 @@ export const getOrdersByParams = (
     );
   }
   throw new Error('Получен пустой токен');
+};
+
+export const getCars = async (page: number, limit: number) => {
+  return await instanceApiFactory.get<IRequestCars>(
+    `/api/db/car?page=${page}&limit=${limit}`
+  );
+};
+
+export const getCategories = async () => {
+  return await instanceApiFactory.get<IRequestCategories>('/api/db/category');
+};
+
+export const getCarsByParams = async (
+  page: number,
+  limit: number,
+  categoryId?: string
+) => {
+  const params: string[] = [];
+
+  if (categoryId != undefined) {
+    params.push(`categoryId=${categoryId}`);
+  }
+
+  return await instanceApiFactory.get<IRequestCars>(
+    `/api/db/car?page=${page}&limit=${limit}&${params.join('&')}`
+  );
+};
+
+export const getPointsToCity = async (id: string) => {
+  return await instanceApiFactory.get<IRequestPoints>('/api/db/point', {
+    params: {
+      cityId: id,
+    },
+  });
+};
+
+export const getPointsToCities = async (ids: string[]) => {
+  const params: string[] = [];
+  ids.map((id) => {
+    params.push(`cityId=${id}`);
+  });
+  return await instanceApiFactory.get<IRequestPoints>(
+    `/api/db/point?${params.join('&')}`
+  );
 };

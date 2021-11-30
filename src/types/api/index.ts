@@ -1,6 +1,9 @@
 import { ICity } from '../actions/cities';
 import { IOrderStatus } from '../actions/orderStatuses';
 import { IOrder } from '../actions/orders';
+import { ICar } from '../actions/cars';
+import { ICategory } from '../actions/categories';
+import { IPoint } from '../actions/points';
 
 export interface IRequestAuth {
   token_type: string;
@@ -26,34 +29,20 @@ export interface IResponseOrderStatuses {
   data: IOrderStatus[];
 }
 
-export interface IPoint {
-  id: string;
-  name: string;
-  address: string;
-}
-
-interface ICategory {
-  id: string;
-  name: string;
-  description: string;
-}
-
-export interface ICar {
-  id: string;
-  name: string;
-  description: string;
-  categoryId: ICategory;
-  priceMax: number;
-  priceMin: number;
-  thumbnail: {
-    path: string;
-  };
-  number: string;
-  tank: number;
-  colors: string[];
-}
-
 export interface IResponseOrders {
   data: IOrder[];
   count: number;
+}
+
+export interface IRequestCars {
+  data: ICar[];
+  count: number;
+}
+
+export interface IRequestCategories {
+  data: ICategory[];
+}
+
+export interface IRequestPoints {
+  data: IPoint[];
 }

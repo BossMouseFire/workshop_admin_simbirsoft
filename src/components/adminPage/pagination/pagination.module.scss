@@ -1,0 +1,35 @@
+.pagination{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  div{
+    font-size: 1vw;
+    line-height: 1.1vw;
+    color: #007BFF;
+    margin-right: 1vw;
+    cursor: pointer;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      font-size: 1.5vw;
+      line-height: 1.65vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      font-size: 2vw;
+      line-height: 2.2vw;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 3.5vw;
+      line-height: 3.85vw;
+      margin-right: 2vw;
+    }
+    &:nth-of-type(2){
+      padding: 0.3vw;
+      text-align: center;
+      color: white;
+      background: #007BFF;
+      border-radius: 8px;
+      @media screen and (max-width: 767px) {
+        padding: 1vw;
+      }
+    }
+  }
+}

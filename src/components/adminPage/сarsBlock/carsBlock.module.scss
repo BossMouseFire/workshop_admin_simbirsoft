@@ -1,0 +1,72 @@
+.carsBlock{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 70%;
+  span{
+    font-size: 0.9vw;
+    line-height: 1vw;
+    color: #3D5170;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      font-size: 1.2vw;
+      line-height: 1.4vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      font-size: 1.5vw;
+      line-height: 1.75vw;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 3vw;
+      line-height: 3.48vw;
+    }
+  }
+  .titleBlock{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 10%;
+    span{
+      font-weight: bold;
+      width: 8%;
+      @media screen and (max-width: 767px) {
+        width: 12%;
+      }
+      &:nth-of-type(7){
+        width: 9%;
+        @media screen and (min-width: 1024px) and (max-width: 1439px) {
+          width: 10%;
+        }
+        @media screen and (max-width: 767px) {
+          display: none;
+        }
+      }
+    }
+  }
+  .cardCar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 20%;
+    span{
+      width: 8%;
+      font-weight: 500;
+      word-break: break-word;
+      color: #818EA3;
+      &:nth-of-type(1){
+        color: #3D5170;
+      }
+      @media screen and (max-width: 767px) {
+        width: 12%;
+      }
+    }
+    div{
+      width: 7.5%;
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
+    }
+  }
+}
