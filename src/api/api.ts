@@ -57,8 +57,16 @@ export const authCheck = () => {
   throw new Error('Получен пустой токен');
 };
 
-export const getCities = () => {
-  return instanceApiFactory.get<IResponseCars>('/db/city');
+export const getCities = (page?: number, limit?: number) => {
+  const params: string[] = [];
+
+  if (page !== undefined) {
+    params.push(`page=${page}`);
+  }
+  if (limit !== undefined) {
+    params.push(`limit=${limit}`);
+  }
+  return instanceApiFactory.get<IResponseCars>(`/db/city?${params.join('&')}`);
 };
 
 export const getOrderStatuses = () => {
@@ -138,4 +146,14 @@ export const getPointsToCity = async (id: string) => {
       cityId: id,
     },
   });
+};
+
+export const getPointsToCities = async (ids: string[]) => {
+  const params: string[] = [];
+  ids.map((id) => {
+    params.push(`cityId=${id}`);
+  });
+  return await instanceApiFactory.get<IRequestPoints>(
+    `/api/db/point?${params.join('&')}`
+  );
 };

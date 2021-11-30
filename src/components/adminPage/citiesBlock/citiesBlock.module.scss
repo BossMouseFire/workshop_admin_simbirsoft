@@ -5,6 +5,7 @@
   height: 70%;
   padding-left: 3%;
   padding-top: 3%;
+  overflow-y: scroll;
   @media screen and (max-width: 767px) {
     padding-top: 5%;
     padding-left: 5%;
@@ -12,38 +13,54 @@
   .titleBlock{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
     height: 10%;
     span{
       font-weight: bold;
+      &:nth-of-type(1){
+        width: 20%;
+      }
+      &:nth-of-type(2){
+        width: 80%;
+      }
+      font-size: 1.5vw;
+      line-height: 1.65vw;
+      color: #3D5170;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 2.2vw;
+        line-height: 2.42vw;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        font-size: 2.5vw;
+        line-height: 2.75vw;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 4vw;
+        line-height: 4.4vw;
+      }
     }
   }
-  .title{
-    font-size: 1.5vw;
-    line-height: 1.65vw;
-    color: #3D5170;
+  .cityCard{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 4vw;
     @media screen and (min-width: 1024px) and (max-width: 1439px) {
-      font-size: 2.2vw;
-      line-height: 2.42vw;
+      height: 6vw;
     }
     @media screen and (min-width: 768px) and (max-width: 1023px) {
-      font-size: 2.5vw;
-      line-height: 2.75vw;
+      height: 8vw;
     }
     @media screen and (max-width: 767px) {
-      font-size: 4vw;
-      line-height: 4.4vw;
-    }
-  }
-  .points{
-    display: flex;
-    flex-direction: column;
-    margin-left: 1%;
-    @media screen and (max-width: 767px) {
-      margin-left: 2%;
+      height: 10vw;
     }
     span{
+      &:nth-of-type(1){
+        width: 20%;
+      }
+      &:nth-of-type(2){
+        width: 80%;
+      }
       font-size: 1.1vw;
       line-height: 1.21vw;
       color: #818EA3;
