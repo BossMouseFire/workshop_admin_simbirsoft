@@ -9,6 +9,8 @@ interface ILoader {
 export const Loader: React.FC<ILoader> = ({ size }) => {
   const getClassSize = () => {
     switch (size) {
+      case 8:
+        return styles.loaderSize_8;
       case 10:
         return styles.loaderSize_10;
     }

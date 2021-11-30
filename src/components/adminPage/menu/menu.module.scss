@@ -203,11 +203,12 @@
       }
     }
     @media screen and (max-width: 767px) {
+      background: white;
       width: 7vw;
       height: 7vw;
       padding-left: 1.1vw;
-      top: auto;
-      bottom: 20%;
+      top: 4vw;
+      left: 4.8vw;
     }
     span,
     &:before,
@@ -215,10 +216,10 @@
       position: absolute;
       height: 0.5vw;
       width: 70%;
-      border-radius: 10px;
       background-color: white;
       @media screen and (max-width: 767px) {
         height: 0.7vw;
+        background-color: #ABB6BF;
       }
     }
     &:before {

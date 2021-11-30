@@ -1,5 +1,5 @@
 import React from 'react';
-import { IOrder } from '../../../types/actions/orders';
+import { IOrder } from '../../../../types/actions/orders';
 import styles from './ordersList.module.scss';
 import OrderCard from './orderCard';
 

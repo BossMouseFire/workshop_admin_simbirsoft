@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './ordersList.module.scss';
-import { convertDate, convertUrlImg } from '../../../utils/utils';
-import { ButtonsBlock, CheckBox } from '../../ui';
-import { IOrder } from '../../../types/actions/orders';
+import { convertDate, convertUrlImg } from '../../../../utils/utils';
+import { ButtonsBlock, CheckBox } from '../../../ui';
+import { IOrder } from '../../../../types/actions/orders';
 
 interface IOrderCard {
   order: IOrder;
