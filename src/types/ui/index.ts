@@ -14,6 +14,7 @@ export interface IInput
     HTMLInputElement
   > {
   isError: boolean;
+  refInput?: React.MutableRefObject<HTMLInputElement>;
 }
 
 export interface IButton
@@ -33,6 +34,7 @@ export interface ISelect
   > {
   data: dataSelect;
   allPoints?: string;
+  sizeSelect: 'auto' | '10';
 }
 
 type dataSelect = ICity[] | IOrderStatus[] | ICategory[];

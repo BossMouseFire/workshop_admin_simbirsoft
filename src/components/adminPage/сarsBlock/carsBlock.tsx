@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import Layout from '../layout/layout';
+import { LayoutTable } from '../layout/layout';
 import Upper from '../layout/upper';
 import Lower from '../layout/lower';
 import styles from './carsBlock.module.scss';
@@ -54,12 +54,13 @@ export const CarsBlock = () => {
   };
 
   return (
-    <Layout nameLayout={'Список авто'}>
+    <LayoutTable nameLayout={'Список авто'}>
       <Upper>
         <Select
           data={categories}
           onChange={onChangeCategory}
           allPoints={'Все категории'}
+          sizeSelect={'10'}
         />
         <Button size={'s'} color={'red'} onClick={cancelChange}>
           Сбросить
@@ -112,6 +113,6 @@ export const CarsBlock = () => {
           isRefresh={isRefresh}
         />
       </Lower>
-    </Layout>
+    </LayoutTable>
   );
 };

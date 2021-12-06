@@ -7,6 +7,7 @@ import {
   ErrorBlock,
   CarsBlock,
   CitiesBlock,
+  CarBlock,
 } from '../../components/adminPage/';
 import styles from './adminPage.module.scss';
 const AdminPage = () => {
@@ -14,6 +15,8 @@ const AdminPage = () => {
 
   const changeSection = () => {
     switch (section) {
+      case 0:
+        return <CarBlock />;
       case 1:
         return <CarsBlock />;
       case 2:
