@@ -1,5 +1,9 @@
 import { Dispatch } from 'redux';
-import { PointsAction, PointsActionTypes } from '../../types/actions/points';
+import {
+  IPoint,
+  PointsAction,
+  PointsActionTypes,
+} from '../../types/actions/points';
 import { getPointsToCities, getPointsToCity } from '../../api/api';
 
 export const fetchPointsToCity = (id: string) => {
@@ -29,5 +33,14 @@ export const fetchPointsToCities = (ids: string[]) => {
     } catch (error) {
       dispatch({ type: PointsActionTypes.FETCH_POINTS_ERROR, payload: error });
     }
+  };
+};
+
+export const addPoint = (point: IPoint) => {
+  return (dispatch: Dispatch<PointsAction>) => {
+    dispatch({
+      type: PointsActionTypes.ADD_POINT,
+      payload: point,
+    });
   };
 };

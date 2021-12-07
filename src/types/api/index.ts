@@ -21,8 +21,12 @@ export interface IResponseCheck {
   };
 }
 
-export interface IResponseCars {
+export interface IResponseCities {
   data: ICity[];
+}
+
+export interface IResponseCity {
+  data: ICity;
 }
 
 export interface IResponseOrderStatuses {
@@ -45,4 +49,8 @@ export interface IRequestCategories {
 
 export interface IRequestPoints {
   data: IPoint[];
+}
+
+export interface IResponsePoint {
+  data: IPoint;
 }

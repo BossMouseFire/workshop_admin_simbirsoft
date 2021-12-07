@@ -1,0 +1,152 @@
+.cityBlock{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 70%;
+  margin-top: 2vw;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+
+  }
+  .firstOptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 40%;
+    height: 100%;
+    min-height: 27vw;
+    max-height: 27vw;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(90, 97, 105, 0.12);
+    border-radius: 9px;
+    padding: 1vw;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      min-height: 34vw;
+      max-height: 34vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      min-height: 40vw;
+      max-height: 40vw;
+    }
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      margin-top: 70vw;
+      min-height: 60vw;
+      max-height: 60vw;
+      border-radius: 0;
+    }
+  }
+  .secondOptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 56%;
+    height: 100%;
+    min-height: 27vw;
+    max-height: 27vw;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(90, 97, 105, 0.12);
+    border-radius: 9px;
+    padding: 1.3vw;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      min-height: 34vw;
+      max-height: 34vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      min-height: 40vw;
+      max-height: 40vw;
+    }
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      margin-top: 10vw;
+      min-height: 60vw;
+      max-height: 60vw;
+      border-radius: 0;
+    }
+    .title{
+      margin-bottom: 1vw;
+    }
+    .editBlock{
+      margin-top: 1vw;
+    }
+  }
+
+  .title {
+    font-weight: 500;
+    font-size: 1.25vw;
+    line-height: 1.5vw;
+    color: #3D5170;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      font-size: 1.5vw;
+      line-height: 1.7vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      font-size: 2vw;
+      line-height: 2.3vw;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 4vw;
+      line-height: 4.6vw;
+    }
+  }
+
+  .editBlock {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 60%;
+    .cityCard {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      span {
+        font-size: 1.1vw;
+        line-height: 1.21vw;
+        font-weight: 300;
+        color: #3D5170;
+        margin-left: 1vw;
+        @media screen and (min-width: 1024px) and (max-width: 1439px) {
+          font-size: 1.4vw;
+          line-height: 1.54vw;
+        }
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+          font-size: 2vw;
+          line-height: 2.2vw;
+        }
+        @media screen and (max-width: 767px) {
+          font-size: 3.5vw;
+          line-height: 3.85vw;
+        }
+      }
+      .delCity {
+        text-decoration: line-through;
+      }
+    }
+  }
+}
+
+.addBlock {
+  display: flex;
+  flex-direction: row;
+  input {
+    margin-right: 1vw;
+    @media screen and (max-width: 767px) {
+      margin-right: 2vw;
+    }
+  }
+  button {
+    margin-top: 0.75vw;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      margin-top: 1vw;
+    }
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1439px) {
+    flex-wrap: wrap;
+    margin-top: 0.5vw;
+  }
+  @media screen and (max-width: 767px) {
+    margin-top: 2vw;
+  }
+}

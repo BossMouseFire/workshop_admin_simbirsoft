@@ -18,6 +18,7 @@ export enum PointsActionTypes {
   FETCH_POINTS = 'FETCH_POINTS',
   FETCH_POINTS_SUCCESS = 'FETCH_POINTS_SUCCESS',
   FETCH_POINTS_ERROR = 'FETCH_POINTS_ERROR',
+  ADD_POINT = 'ADD_POINT',
 }
 interface FetchCitiesAction {
   type: PointsActionTypes.FETCH_POINTS;
@@ -33,7 +34,13 @@ interface FetchCitiesActionError {
   payload: any;
 }
 
+interface AddPointAction {
+  type: PointsActionTypes.ADD_POINT;
+  payload: IPoint;
+}
+
 export type PointsAction =
   | FetchCitiesAction
   | FetchCitiesActionSuccess
-  | FetchCitiesActionError;
+  | FetchCitiesActionError
+  | AddPointAction;

@@ -19,6 +19,8 @@ export const citiesReducer = (
       return { cities: [], loading: true, error: null };
     case CitiesActionTypes.FETCH_CITIES_SUCCESS:
       return { cities: action.payload, loading: false, error: null };
+    case CitiesActionTypes.ADD_CITY:
+      return { ...state, cities: [...state.cities, action.payload] };
     case CitiesActionTypes.FETCH_CITIES_ERROR:
       return { cities: [], loading: false, error: action.payload };
     default:

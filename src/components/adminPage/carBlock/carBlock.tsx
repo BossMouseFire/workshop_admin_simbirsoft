@@ -4,11 +4,22 @@ import styles from './carBlock.module.scss';
 import { Button, Input, Select } from '../../ui';
 import { useTypeSelector } from '../../../hooks/useTypeSelector';
 import { ReactComponent as Plus } from '../../../assets/plus.svg';
+import { useDispatch } from 'react-redux';
+import { fetchCategories } from '../../../store/actionCreators/categories';
+import { ICategory } from '../../../types/actions/categories';
 export const CarBlock = () => {
   const { categories } = useTypeSelector((state) => state.categories);
+  const dispatch = useDispatch();
   const refInputImg = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
+  const [nameCar, setNameCar] = useState('Название');
+  const [typeCar, setTypeCar] = useState<ICategory>();
+  const [description, setDescription] = useState<string>('');
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, []);
 
   useEffect(() => {
     if (!selectedFile) {
@@ -32,6 +43,16 @@ export const CarBlock = () => {
     setSelectedFile(e.target.files[0]);
   };
 
+  const changeTypeCar = (e: ChangeEvent<HTMLSelectElement>) => {
+    const id = e.target.value;
+    if (categories.length) {
+      categories.map((category) => {
+        if (category.id === id) {
+          setTypeCar(category);
+        }
+      });
+    }
+  };
   return (
     <Layout nameLayout={'Карточка автомобиля'}>
       <div className={styles.carBlock}>
@@ -41,8 +62,8 @@ export const CarBlock = () => {
             {!preview && <div>Выберите изображение</div>}
           </div>
           <div className={styles.prevSpan}>
-            <span>Название</span>
-            <span>тип авто</span>
+            <span>{nameCar}</span>
+            <span>{typeCar?.name}</span>
           </div>
           <Input
             isError={false}
@@ -54,7 +75,10 @@ export const CarBlock = () => {
           />
           <div className={styles.description}>
             <span>Описание</span>
-            <textarea></textarea>
+            <textarea
+              defaultValue={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </div>
         </div>
         <div className={styles.carOptions}>
@@ -65,11 +89,16 @@ export const CarBlock = () => {
               <Input
                 isError={false}
                 placeholder={'Введите название автомобиля'}
+                onChange={(e) => setNameCar(e.target.value)}
               />
             </div>
             <div>
               <span>Тип автомобиля</span>
-              <Select data={categories} sizeSelect={'auto'} />
+              <Select
+                data={categories}
+                sizeSelect={'auto'}
+                onChange={changeTypeCar}
+              />
             </div>
           </div>
           <div className={styles.colorOptions}>

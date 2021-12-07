@@ -1,14 +1,16 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { getCookie, tokenEncoder } from '../utils/utils';
 import {
   IRequestAuth,
   IRequestCars,
   IRequestCategories,
   IRequestPoints,
-  IResponseCars,
+  IResponseCities,
   IResponseCheck,
   IResponseOrders,
   IResponseOrderStatuses,
+  IResponseCity,
+  IResponsePoint,
 } from '../types/api';
 
 const instanceApiFactory = axios.create({
@@ -66,7 +68,9 @@ export const getCities = (page?: number, limit?: number) => {
   if (limit !== undefined) {
     params.push(`limit=${limit}`);
   }
-  return instanceApiFactory.get<IResponseCars>(`/db/city?${params.join('&')}`);
+  return instanceApiFactory.get<IResponseCities>(
+    `/db/city?${params.join('&')}`
+  );
 };
 
 export const getOrderStatuses = () => {
@@ -121,7 +125,7 @@ export const getCars = async (page: number, limit: number) => {
 };
 
 export const getCategories = async () => {
-  return await instanceApiFactory.get<IRequestCategories>('/api/db/category');
+  return await instanceApiFactory.get<IRequestCategories>('/db/category');
 };
 
 export const getCarsByParams = async (
@@ -136,12 +140,12 @@ export const getCarsByParams = async (
   }
 
   return await instanceApiFactory.get<IRequestCars>(
-    `/api/db/car?page=${page}&limit=${limit}&${params.join('&')}`
+    `/db/car?page=${page}&limit=${limit}&${params.join('&')}`
   );
 };
 
 export const getPointsToCity = async (id: string) => {
-  return await instanceApiFactory.get<IRequestPoints>('/api/db/point', {
+  return await instanceApiFactory.get<IRequestPoints>('/db/point', {
     params: {
       cityId: id,
     },
@@ -156,4 +160,62 @@ export const getPointsToCities = async (ids: string[]) => {
   return await instanceApiFactory.get<IRequestPoints>(
     `/api/db/point?${params.join('&')}`
   );
+};
+
+export const postCity = async (
+  name: string
+): Promise<AxiosResponse<IResponseCity>> => {
+  const token = getCookie('accessToken');
+
+  if (token) {
+    return await instanceApiFactory.post<IResponseCity>(
+      'api/db/city',
+      { name },
+      {
+        headers: { Authorization: token },
+      }
+    );
+  }
+  throw new Error('Получен пустой токен');
+};
+
+export const deleteCity = async (id: string) => {
+  const token = getCookie('accessToken');
+
+  if (token) {
+    return await instanceApiFactory.delete(`/db/city/${id}`, {
+      headers: { Authorization: token },
+    });
+  }
+  throw new Error('Получен пустой токен');
+};
+
+export const postPoint = async (
+  name: string,
+  address: string,
+  cityId: string
+): Promise<AxiosResponse<IResponsePoint>> => {
+  const token = getCookie('accessToken');
+
+  if (token) {
+    return await instanceApiFactory.post<IResponsePoint>(
+      'api/db/point',
+      { name, cityId, address },
+      {
+        headers: { Authorization: token },
+      }
+    );
+  }
+  throw new Error('Получен пустой токен');
+};
+
+export const deletePoint = async (id: string) => {
+  const token = getCookie('accessToken');
+
+  if (token) {
+    return await instanceApiFactory.delete(`/db/point/${id}`, {
+      headers: { Authorization: token },
+    });
+  }
+  throw new Error('Получен пустой токен');
 };
