@@ -14,13 +14,20 @@ import { deleteCity, deletePoint, postCity, postPoint } from '../../../api/api';
 
 export const CityBlock: React.FC = () => {
   const { cities } = useTypeSelector((state) => state.cities);
-  const { points } = useTypeSelector((state) => state.points);
+  const { points, loading: pointsLoading } = useTypeSelector(
+    (state) => state.points
+  );
   const [delCities, setDelCities] = useState<string[]>([]);
   const [delPoints, setDelPoints] = useState<string[]>([]);
   const [namePoint, setNamePoint] = useState<string>('');
   const [addressPoint, setAddressPoint] = useState<string>('');
   const [cityName, setCityName] = useState<string>('');
   const [selectCity, setSelectCity] = useState<string>('');
+
+  const [isErrorNameCity, setErrorNameCity] = useState<boolean>(false);
+  const [isErrorNamePoint, setErrorNamePoint] = useState<boolean>(false);
+  const [isErrorAddressPoint, setErrorAddressPoint] = useState<boolean>(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,6 +49,10 @@ export const CityBlock: React.FC = () => {
   };
 
   const onAddCity = () => {
+    if (!cityName) {
+      setErrorNameCity(true);
+    }
+
     if (cityName) {
       postCity(cityName).then((response) => {
         const city = response.data.data;
@@ -79,11 +90,43 @@ export const CityBlock: React.FC = () => {
   };
 
   const onAddPoint = () => {
+    if (!namePoint) {
+      setErrorNamePoint(true);
+    }
+
+    if (!addressPoint) {
+      setErrorAddressPoint(true);
+    }
+
     if (namePoint && addressPoint) {
       postPoint(namePoint, addressPoint, selectCity).then((response) => {
         dispatch(addPoint(response.data.data));
       });
     }
+  };
+
+  const changeNameCity = (e: ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.value;
+    if (name) {
+      setErrorNameCity(false);
+    }
+    setCityName(name);
+  };
+
+  const changeNamePoint = (e: ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.value;
+    if (name) {
+      setErrorNamePoint(false);
+    }
+    setNamePoint(name);
+  };
+
+  const changeAddressPoint = (e: ChangeEvent<HTMLInputElement>) => {
+    const address = e.target.value;
+    if (address) {
+      setErrorAddressPoint(false);
+    }
+    setAddressPoint(address);
   };
   return (
     <Layout nameLayout={'Редактирование городов'}>
@@ -107,10 +150,10 @@ export const CityBlock: React.FC = () => {
           </div>
           <div className={styles.addBlock}>
             <Input
-              isError={false}
+              isError={isErrorNameCity}
               placeholder={'Добавить город'}
               value={cityName}
-              onChange={(e) => setCityName(e.target.value)}
+              onChange={changeNameCity}
             />
             <Button size={'s'} color={'green'} onClick={onAddCity}>
               Добавить
@@ -135,6 +178,9 @@ export const CityBlock: React.FC = () => {
                   setDelArray={setDelPoints}
                 />
               ))}
+            {!points.length && !pointsLoading && (
+              <span className={styles.infoAbsent}>Информация отсутствует</span>
+            )}
           </div>
           <div>
             <Button size={'s'} color={'red'} onClick={onDeletePoints}>
@@ -143,16 +189,16 @@ export const CityBlock: React.FC = () => {
           </div>
           <div className={styles.addBlock}>
             <Input
-              isError={false}
+              isError={isErrorNamePoint}
               placeholder={'Добавить название'}
               value={namePoint}
-              onChange={(e) => setNamePoint(e.target.value)}
+              onChange={changeNamePoint}
             />
             <Input
-              isError={false}
+              isError={isErrorAddressPoint}
               placeholder={'Добавить адрес'}
               value={addressPoint}
-              onChange={(e) => setAddressPoint(e.target.value)}
+              onChange={changeAddressPoint}
             />
             <Button size={'s'} color={'green'} onClick={onAddPoint}>
               Добавить

@@ -201,7 +201,9 @@
     .mainOptions {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       justify-content: space-between;
+      gap: 1vw;
       margin-top: 2vw;
       @media screen and (max-width: 767px) {
         margin-top: 4vw;
@@ -211,6 +213,15 @@
         flex-direction: column;
         justify-content: space-between;
         width: 48%;
+
+        &:nth-of-type(1),
+        &:nth-of-type(2),
+        &:nth-of-type(5),
+        &:nth-of-type(6)
+        {
+          width: 22%;
+        }
+
         span{
           font-size: 1vw;
           line-height: 1.2vw;
@@ -228,67 +239,40 @@
             line-height: 3.6vw;
           }
         }
-      }
-    }
-    .colorOptions {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 48%;
-      margin-top: 2vw;
-      @media screen and (max-width: 767px) {
-        margin-top: 4vw;
-      }
-      span{
-        font-size: 1vw;
-        line-height: 1.2vw;
-        color: #495057;
-        @media screen and (min-width: 1024px) and (max-width: 1439px) {
-          font-size: 1.2vw;
-          line-height: 1.4vw;
-        }
-        @media screen and (min-width: 768px) and (max-width: 1023px) {
-          font-size: 1.5vw;
-          line-height: 1.8vw;
-        }
-        @media screen and (max-width: 767px) {
-          font-size: 3vw;
-          line-height: 3.6vw;
-        }
-      }
-      .colorButton {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        input {
-          width: 85%;
-          @media screen and (min-width: 768px) and (max-width: 1023px) {
-            width: 80%;
-          }
-          @media screen and (max-width: 767px) {
-           width: 77%;
-          }
-        }
-        .addColor {
+        .colorButton {
           display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid #BECAD6;
-          border-radius: 4px;
-          width: 10%;
-          margin-top: 0.75vw;
-          cursor: pointer;
-          @media screen and (min-width: 768px) and (max-width: 1023px) {
-            width: 15%;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+          input {
+            width: 85%;
+            @media screen and (min-width: 768px) and (max-width: 1023px) {
+              width: 80%;
+            }
+            @media screen and (max-width: 767px) {
+              width: 77%;
+            }
           }
-          @media screen and (max-width: 767px) {
-            width: 17%;
-          }
-          svg {
-            transition: all ease 0.7s;
-            &:hover {
-              fill: #8b8e96;
+          .addColor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #BECAD6;
+            border-radius: 4px;
+            width: 10%;
+            margin-top: 0.75vw;
+            cursor: pointer;
+            @media screen and (min-width: 768px) and (max-width: 1023px) {
+              width: 15%;
+            }
+            @media screen and (max-width: 767px) {
+              width: 17%;
+            }
+            svg {
+              transition: all ease 0.7s;
+              &:hover {
+                fill: #8b8e96;
+              }
             }
           }
         }
@@ -304,6 +288,39 @@
         @media screen and (min-width: 768px) and (max-width: 1023px) {
           margin-right: 3vw;
         }
+      }
+    }
+  }
+}
+
+.colors {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 40%;
+  margin-top: 1vw;
+  .colorCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    span {
+      font-size: 1.1vw;
+      line-height: 1.21vw;
+      font-weight: 300;
+      color: #3D5170;
+      margin-left: 1vw;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 1.4vw;
+        line-height: 1.54vw;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        font-size: 2vw;
+        line-height: 2.2vw;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 3.5vw;
+        line-height: 3.85vw;
       }
     }
   }

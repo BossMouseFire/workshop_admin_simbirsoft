@@ -6,13 +6,13 @@ import { ICity } from '../../../types/actions/cities';
 import { IPoint } from '../../../types/actions/points';
 
 type Entry = ICity | IPoint;
-interface ICityEditCard {
+interface IEditCard {
   entry: Entry;
   delArray?: string[];
   setDelArray?: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export const EditCard: React.FC<ICityEditCard> = ({
+export const EditCard: React.FC<IEditCard> = ({
   entry,
   delArray,
   setDelArray,
@@ -34,14 +34,14 @@ export const EditCard: React.FC<ICityEditCard> = ({
     setChecked((state) => !state);
   };
   return (
-    <div className={styles.cityCard}>
+    <div className={styles.editCard}>
       <CheckBox checked={isChecked} onChange={changeDelArray} />
       {'address' in entry ? (
-        <span className={cn({ [styles.delCity]: !isChecked })}>
+        <span className={cn({ [styles.delEntry]: !isChecked })}>
           {`${entry.name} (${entry.address})`}
         </span>
       ) : (
-        <span className={cn({ [styles.delCity]: !isChecked })}>
+        <span className={cn({ [styles.delEntry]: !isChecked })}>
           {entry.name}
         </span>
       )}
