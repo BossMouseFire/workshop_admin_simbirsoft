@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { fetchCategories } from '../../../store/actionCreators/categories';
 import { ICategory } from '../../../types/actions/categories';
 import { EditCardColor } from './editCard';
+import { convertImgToBase64 } from '../../../utils/utils';
 export const CarBlock = () => {
   const { categories } = useTypeSelector((state) => state.categories);
   const dispatch = useDispatch();
@@ -82,6 +83,15 @@ export const CarBlock = () => {
       setColors([...colors, stateColor]);
     }
   };
+
+  const onPostCar = () => {
+    if (selectedFile) {
+      convertImgToBase64(selectedFile, (response) => {
+        console.log(response);
+      });
+    }
+  };
+
   return (
     <Layout nameLayout={'Карточка автомобиля'}>
       <div className={styles.carBlock}>
@@ -180,7 +190,7 @@ export const CarBlock = () => {
             ))}
           </div>
           <div className={styles.buttons}>
-            <Button size={'s'} color={'blue'}>
+            <Button size={'s'} color={'blue'} onClick={onPostCar}>
               Сохранить
             </Button>
             <Button size={'s'}>Отменить</Button>

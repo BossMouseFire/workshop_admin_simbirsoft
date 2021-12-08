@@ -12,6 +12,7 @@ import {
   IResponseCity,
   IResponsePoint,
 } from '../types/api';
+import { ICar } from '../types/actions/cars';
 
 const instanceApiFactory = axios.create({
   baseURL: 'https://api-factory.simbirsoft1.com/api',
@@ -205,6 +206,17 @@ export const postPoint = async (
         headers: { Authorization: token },
       }
     );
+  }
+  throw new Error('Получен пустой токен');
+};
+
+export const postCar = async (car: ICar) => {
+  const token = getCookie('accessToken');
+  if (token) {
+    const json = JSON.stringify(car);
+    return await instanceApiFactory.post('api/db/city', json, {
+      headers: { Authorization: token },
+    });
   }
   throw new Error('Получен пустой токен');
 };

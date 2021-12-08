@@ -9,6 +9,9 @@ export interface ICar {
   priceMin: number;
   thumbnail: {
     path: string;
+    size?: number;
+    originalname?: string;
+    mimetype: string;
   };
   number: string;
   tank: number;
