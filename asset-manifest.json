@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/workshop_admin_simbirsoft/static/css/main.422b5640.chunk.css",
-    "main.js": "/workshop_admin_simbirsoft/static/js/main.63999780.chunk.js",
-    "main.js.map": "/workshop_admin_simbirsoft/static/js/main.63999780.chunk.js.map",
-    "runtime-main.js": "/workshop_admin_simbirsoft/static/js/runtime-main.d9ec7e46.js",
-    "runtime-main.js.map": "/workshop_admin_simbirsoft/static/js/runtime-main.d9ec7e46.js.map",
-    "static/js/2.a3631ba9.chunk.js": "/workshop_admin_simbirsoft/static/js/2.a3631ba9.chunk.js",
-    "static/js/2.a3631ba9.chunk.js.map": "/workshop_admin_simbirsoft/static/js/2.a3631ba9.chunk.js.map",
-    "static/js/3.aa1987b9.chunk.js": "/workshop_admin_simbirsoft/static/js/3.aa1987b9.chunk.js",
-    "static/js/3.aa1987b9.chunk.js.map": "/workshop_admin_simbirsoft/static/js/3.aa1987b9.chunk.js.map",
+    "main.css": "/workshop_admin_simbirsoft/static/css/main.69dd06bb.chunk.css",
+    "main.js": "/workshop_admin_simbirsoft/static/js/main.b4a59186.chunk.js",
+    "main.js.map": "/workshop_admin_simbirsoft/static/js/main.b4a59186.chunk.js.map",
+    "runtime-main.js": "/workshop_admin_simbirsoft/static/js/runtime-main.17733322.js",
+    "runtime-main.js.map": "/workshop_admin_simbirsoft/static/js/runtime-main.17733322.js.map",
+    "static/js/2.0f35f634.chunk.js": "/workshop_admin_simbirsoft/static/js/2.0f35f634.chunk.js",
+    "static/js/2.0f35f634.chunk.js.map": "/workshop_admin_simbirsoft/static/js/2.0f35f634.chunk.js.map",
+    "static/js/3.5a9e946b.chunk.js": "/workshop_admin_simbirsoft/static/js/3.5a9e946b.chunk.js",
+    "static/js/3.5a9e946b.chunk.js.map": "/workshop_admin_simbirsoft/static/js/3.5a9e946b.chunk.js.map",
     "index.html": "/workshop_admin_simbirsoft/index.html",
-    "static/css/main.422b5640.chunk.css.map": "/workshop_admin_simbirsoft/static/css/main.422b5640.chunk.css.map",
-    "static/js/2.a3631ba9.chunk.js.LICENSE.txt": "/workshop_admin_simbirsoft/static/js/2.a3631ba9.chunk.js.LICENSE.txt",
+    "static/css/main.69dd06bb.chunk.css.map": "/workshop_admin_simbirsoft/static/css/main.69dd06bb.chunk.css.map",
+    "static/js/2.0f35f634.chunk.js.LICENSE.txt": "/workshop_admin_simbirsoft/static/js/2.0f35f634.chunk.js.LICENSE.txt",
     "static/media/index.css": "/workshop_admin_simbirsoft/static/media/Roboto-Regular.a8d6ac03.ttf",
     "static/media/anonim.125d9726.svg": "/workshop_admin_simbirsoft/static/media/anonim.125d9726.svg",
     "static/media/checkGreen.da66ee6c.svg": "/workshop_admin_simbirsoft/static/media/checkGreen.da66ee6c.svg",
@@ -23,12 +23,13 @@
     "static/media/notices.19235568.svg": "/workshop_admin_simbirsoft/static/media/notices.19235568.svg",
     "static/media/order.519bb794.svg": "/workshop_admin_simbirsoft/static/media/order.519bb794.svg",
     "static/media/pen.a06322f4.svg": "/workshop_admin_simbirsoft/static/media/pen.a06322f4.svg",
+    "static/media/plus.2ab8f27b.svg": "/workshop_admin_simbirsoft/static/media/plus.2ab8f27b.svg",
     "static/media/threePoint.03943377.svg": "/workshop_admin_simbirsoft/static/media/threePoint.03943377.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d9ec7e46.js",
-    "static/js/2.a3631ba9.chunk.js",
-    "static/css/main.422b5640.chunk.css",
-    "static/js/main.63999780.chunk.js"
+    "static/js/runtime-main.17733322.js",
+    "static/js/2.0f35f634.chunk.js",
+    "static/css/main.69dd06bb.chunk.css",
+    "static/js/main.b4a59186.chunk.js"
   ]
 }
