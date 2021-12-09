@@ -9,9 +9,10 @@ import { fetchCategories } from '../../../store/actionCreators/categories';
 import { ICategory } from '../../../types/actions/categories';
 import { EditCardColor } from './editCard';
 import { convertImgToBase64 } from '../../../utils/utils';
-import { ICarPost, postCar, updateCar } from '../../../api/api';
+import { postCar, updateCar } from '../../../api/api';
 import { ICar } from '../../../types/actions/cars';
 import { Alert } from '../../other';
+import { ICarPost } from '../../../types/api';
 
 interface ICarBlock {
   car?: ICar;
@@ -52,6 +53,14 @@ export const CarBlock: React.FC<ICarBlock> = ({ car }) => {
       setTypeCar(car.categoryId);
     }
   }, []);
+
+  useEffect(() => {
+    if (isAlert) {
+      setTimeout(() => {
+        setIsAlert(false);
+      }, 5000);
+    }
+  }, [isAlert]);
 
   useEffect(() => {
     if (!selectedFile) {
@@ -112,7 +121,9 @@ export const CarBlock: React.FC<ICarBlock> = ({ car }) => {
 
   const addColor = () => {
     if (stateColor) {
-      setColors([...colors, stateColor]);
+      if (colors.indexOf(stateColor) === -1) {
+        setColors([...colors, stateColor]);
+      }
     }
   };
 
@@ -125,6 +136,7 @@ export const CarBlock: React.FC<ICarBlock> = ({ car }) => {
     setMaxPrice(0);
     setMinPrice(0);
     setPreview('');
+    setStateColor('');
     setSelectedFile(undefined);
     setCanceled(true);
   };
@@ -286,6 +298,7 @@ export const CarBlock: React.FC<ICarBlock> = ({ car }) => {
               <div className={styles.colorButton}>
                 <Input
                   placeholder={'Добавьте цвет'}
+                  value={stateColor}
                   onChange={(e) => setStateColor(e.target.value)}
                 />
                 <div className={styles.addColor} onClick={addColor}>

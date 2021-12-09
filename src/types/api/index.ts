@@ -54,3 +54,19 @@ export interface IRequestPoints {
 export interface IResponsePoint {
   data: IPoint;
 }
+
+export interface ICarPost {
+  name: string;
+  description: string;
+  categoryId?: ICategory;
+  priceMax: number;
+  priceMin: number;
+  thumbnail: {
+    path: string;
+    size?: number;
+    originalname?: string;
+    mimetype?: string;
+  };
+  number: string;
+  colors: string[];
+}

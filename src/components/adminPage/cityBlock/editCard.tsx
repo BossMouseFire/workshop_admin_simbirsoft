@@ -17,12 +17,12 @@ export const EditCard: React.FC<IEditCard> = ({
   delArray,
   setDelArray,
 }) => {
-  const [isChecked, setChecked] = useState<boolean>(true);
+  const [isChecked, setChecked] = useState<boolean>(false);
 
   const changeDelArray = () => {
     if (delArray) {
       let array: string[] = delArray;
-      if (!isChecked) {
+      if (isChecked) {
         array = array.filter((item) => item !== entry.id);
       } else {
         array.push(entry.id);
@@ -37,11 +37,11 @@ export const EditCard: React.FC<IEditCard> = ({
     <div className={styles.editCard}>
       <CheckBox checked={isChecked} onChange={changeDelArray} />
       {'address' in entry ? (
-        <span className={cn({ [styles.delEntry]: !isChecked })}>
+        <span className={cn({ [styles.delEntry]: isChecked })}>
           {`${entry.name} (${entry.address})`}
         </span>
       ) : (
-        <span className={cn({ [styles.delEntry]: !isChecked })}>
+        <span className={cn({ [styles.delEntry]: isChecked })}>
           {entry.name}
         </span>
       )}
