@@ -65,7 +65,6 @@ export const convertImgToBase64 = (blob: Blob, callback: Callback) => {
   reader.onload = function () {
     if (reader.result) {
       callback(reader.result);
-      console.log(reader);
     }
   };
 };

@@ -1,0 +1,51 @@
+
+.alert {
+  position: absolute;
+  bottom: 6vw;
+  right: 1vw;
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  min-width: 20vw;
+  padding: 1vw;
+  border-radius: 6px;
+  font-weight: 300;
+  font-size: 1.1vw;
+  line-height: 1.21vw;
+  transition: opacity ease 0.7s;
+  @media screen and (min-width: 1024px) and (max-width: 1439px) {
+    font-size: 1.4vw;
+    line-height: 1.54vw;
+    bottom: 10vw;
+    padding: 1.5vw;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    font-size: 2vw;
+    line-height: 2.2vw;
+    bottom: 11vw;
+    padding: 1.5vw;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 3.5vw;
+    line-height: 3.85vw;
+    padding: 2vw;
+    top: 25vw;
+    bottom: auto;
+  }
+}
+
+.alertActive {
+  opacity: 1;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.error {
+  color: #D8000C;
+  background-color: #FFD2D2;
+}
+
+.info {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+}

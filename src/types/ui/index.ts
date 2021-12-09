@@ -13,7 +13,7 @@ export interface IInput
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  isError: boolean;
+  isError?: boolean;
   refInput?: React.MutableRefObject<HTMLInputElement>;
 }
 
@@ -35,6 +35,7 @@ export interface ISelect
   data: dataSelect;
   allPoints?: string;
   sizeSelect: 'auto' | '10';
+  defaultSelectedId?: string;
 }
 
 type dataSelect = ICity[] | IOrderStatus[] | ICategory[];

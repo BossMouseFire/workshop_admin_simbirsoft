@@ -16,8 +16,13 @@ import { Button, Select } from '../../ui';
 import { fetchCategories } from '../../../store/actionCreators/categories';
 import FormLoader from '../layout/formLoader';
 import InfoError from '../layout/infoError';
+import { ICar } from '../../../types/actions/cars';
 
-export const CarsBlock = () => {
+interface ICarsBlock {
+  changeCar: (car: ICar) => void;
+}
+
+export const CarsBlock: React.FC<ICarsBlock> = ({ changeCar }) => {
   const dispatch = useDispatch();
   const { cars, maxCount, loading } = useTypeSelector((state) => state.cars);
   const { categories } = useTypeSelector((state) => state.categories);
@@ -84,7 +89,7 @@ export const CarsBlock = () => {
           {cars.map((car) => (
             <div className={styles.cardCar} key={car.id}>
               <span>{car.categoryId?.name ? car.categoryId?.name : '-'}</span>
-              <span>{car.name}</span>
+              <span onClick={() => changeCar(car)}>{car.name}</span>
               <span>{car.number ? car.number : '-'}</span>
               <span>{car.priceMin}р</span>
               <span>{car.priceMax}р</span>

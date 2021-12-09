@@ -8,6 +8,7 @@ export const Select: React.FC<ISelect> = ({
   data,
   className,
   sizeSelect,
+  defaultSelectedId,
   ...props
 }) => {
   return (
@@ -18,9 +19,16 @@ export const Select: React.FC<ISelect> = ({
       })}
     >
       <select className={cn(className)} {...props}>
+        <option disabled={true} selected={!defaultSelectedId}>
+          Выберите пункт
+        </option>
         {allPoints && <option value={''}>{allPoints}</option>}
         {data.map((item) => (
-          <option key={item.id} value={item.id}>
+          <option
+            key={item.id}
+            value={item.id}
+            selected={item.id === defaultSelectedId}
+          >
             {item.name}
           </option>
         ))}

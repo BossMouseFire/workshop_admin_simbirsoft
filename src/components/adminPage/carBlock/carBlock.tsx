@@ -9,38 +9,57 @@ import { fetchCategories } from '../../../store/actionCreators/categories';
 import { ICategory } from '../../../types/actions/categories';
 import { EditCardColor } from './editCard';
 import { convertImgToBase64 } from '../../../utils/utils';
-export const CarBlock = () => {
+import { ICarPost, postCar, updateCar } from '../../../api/api';
+import { ICar } from '../../../types/actions/cars';
+import { Alert } from '../../other';
+
+interface ICarBlock {
+  car?: ICar;
+}
+
+export const CarBlock: React.FC<ICarBlock> = ({ car }) => {
   const { categories } = useTypeSelector((state) => state.categories);
   const dispatch = useDispatch();
   const refInputImg = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const [selectedFile, setSelectedFile] = useState();
-  const [preview, setPreview] = useState();
-  const [nameCar, setNameCar] = useState('Название');
+  const [selectedFile, setSelectedFile] = useState<File>();
+  const [preview, setPreview] = useState<string>(
+    car ? car.thumbnail?.path : ''
+  );
+  const [nameCar, setNameCar] = useState<string>(car ? car.name : '');
   const [typeCar, setTypeCar] = useState<ICategory>();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [maxPrice, setMaxPrice] = useState<number>(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [minPrice, setMinPrice] = useState<number>(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [number, setNumber] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [colors, setColors] = useState<string[]>([]);
+  const [maxPrice, setMaxPrice] = useState<number>(car ? car.priceMax : 0);
+  const [minPrice, setMinPrice] = useState<number>(car ? car.priceMin : 0);
+  const [number, setNumber] = useState<string>(car ? car.number : '');
+  const [description, setDescription] = useState<string>(
+    car ? car.description : ''
+  );
+  const [colors, setColors] = useState<string[]>(car ? car.colors : []);
+
   const [stateColor, setStateColor] = useState<string>('');
+
+  const [nameCarError, setNameCarError] = useState<boolean>(false);
+  const [maxPriceError, setMaxPriceError] = useState<boolean>(false);
+  const [minPriceError, setMinPriceError] = useState<boolean>(false);
+  const [numberError, setNumberError] = useState<boolean>(false);
+
+  const [typeResponse, setTypeResponse] = useState<'info' | 'error'>('info');
+  const [isAlert, setIsAlert] = useState<boolean>(false);
+  const [isCanceled, setCanceled] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(fetchCategories());
+    if (car) {
+      setTypeCar(car.categoryId);
+    }
   }, []);
 
   useEffect(() => {
     if (!selectedFile) {
-      setPreview(undefined);
       return;
     }
     const objectUrl = URL.createObjectURL(selectedFile);
-    // @ts-ignore
     setPreview(objectUrl);
 
-    // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
 
@@ -49,7 +68,6 @@ export const CarBlock = () => {
       setSelectedFile(undefined);
       return;
     }
-    // @ts-ignore
     setSelectedFile(e.target.files[0]);
   };
 
@@ -64,10 +82,23 @@ export const CarBlock = () => {
     }
   };
 
+  const changeNameCar = (e: ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.value;
+    setNameCar(name);
+    setNameCarError(false);
+  };
+
+  const changeNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    const number = e.target.value;
+    setNumber(number);
+    setNumberError(false);
+  };
+
   const changeMaxPrice = (e: ChangeEvent<HTMLInputElement>) => {
     const price = Number(e.target.value);
     if (!isNaN(price)) {
       setMaxPrice(price);
+      setMaxPriceError(false);
     }
   };
 
@@ -75,6 +106,7 @@ export const CarBlock = () => {
     const price = Number(e.target.value);
     if (!isNaN(price)) {
       setMinPrice(price);
+      setMinPriceError(false);
     }
   };
 
@@ -84,10 +116,110 @@ export const CarBlock = () => {
     }
   };
 
-  const onPostCar = () => {
+  const onCancel = () => {
+    setNameCar('');
+    setTypeCar(undefined);
+    setDescription('');
+    setColors([]);
+    setNumber('');
+    setMaxPrice(0);
+    setMinPrice(0);
+    setPreview('');
+    setSelectedFile(undefined);
+    setCanceled(true);
+  };
+
+  const onSaveCar = () => {
+    let isError = false;
+
+    if (!nameCar) {
+      setNameCarError(true);
+      isError = true;
+    }
+
+    if (minPrice < 0 || minPrice >= maxPrice) {
+      setMinPriceError(true);
+      isError = true;
+    }
+
+    if (maxPrice < 0 || minPrice >= maxPrice) {
+      setMaxPriceError(true);
+      isError = true;
+    }
+
+    if (!number) {
+      setNumberError(true);
+      isError = true;
+    }
+
+    if (!typeCar) {
+      isError = true;
+    }
+
+    if (isError) {
+      return;
+    }
+
+    if (!selectedFile && car) {
+      const carObj = {
+        priceMax: maxPrice,
+        priceMin: minPrice,
+        name: nameCar,
+        description: description,
+        categoryId: typeCar?.id,
+        number: number,
+        colors: colors,
+      } as ICarPost;
+      updateCar(carObj, car.id)
+        .then(() => {
+          setTypeResponse('info');
+          setIsAlert(true);
+        })
+        .catch(() => {
+          setTypeResponse('error');
+          setIsAlert(true);
+        });
+    }
+
     if (selectedFile) {
       convertImgToBase64(selectedFile, (response) => {
-        console.log(response);
+        const carObj = {
+          priceMax: maxPrice,
+          priceMin: minPrice,
+          name: nameCar,
+          thumbnail: {
+            path: response,
+            size: selectedFile.size,
+            originalname: selectedFile.name,
+            mimetype: selectedFile.type,
+          },
+          description: description,
+          categoryId: typeCar?.id,
+          number: number,
+          colors: colors,
+        } as ICarPost;
+
+        if (car && !isCanceled) {
+          updateCar(carObj, car.id)
+            .then(() => {
+              setTypeResponse('info');
+              setIsAlert(true);
+            })
+            .catch(() => {
+              setTypeResponse('error');
+              setIsAlert(true);
+            });
+        } else {
+          postCar(carObj)
+            .then(() => {
+              setTypeResponse('info');
+              setIsAlert(true);
+            })
+            .catch(() => {
+              setTypeResponse('error');
+              setIsAlert(true);
+            });
+        }
       });
     }
   };
@@ -105,7 +237,6 @@ export const CarBlock = () => {
             <span>{typeCar?.name}</span>
           </div>
           <Input
-            isError={false}
             type={'file'}
             refInput={refInputImg}
             className={styles.inputFileBlock}
@@ -115,7 +246,7 @@ export const CarBlock = () => {
           <div className={styles.description}>
             <span>Описание</span>
             <textarea
-              defaultValue={description}
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
@@ -126,17 +257,19 @@ export const CarBlock = () => {
             <div>
               <span>Модель автомобиля</span>
               <Input
-                isError={false}
+                isError={nameCarError}
                 placeholder={'Модель'}
-                onChange={(e) => setNameCar(e.target.value)}
+                onChange={changeNameCar}
+                value={nameCar}
               />
             </div>
             <div>
               <span>Номер</span>
               <Input
-                isError={false}
+                isError={numberError}
                 placeholder={'Номер'}
-                onChange={(e) => setNumber(e.target.value)}
+                onChange={changeNumber}
+                value={number}
               />
             </div>
             <div>
@@ -145,13 +278,13 @@ export const CarBlock = () => {
                 data={categories}
                 sizeSelect={'auto'}
                 onChange={changeTypeCar}
+                defaultSelectedId={typeCar?.id}
               />
             </div>
             <div>
               <span>Доступные цвета</span>
               <div className={styles.colorButton}>
                 <Input
-                  isError={false}
                   placeholder={'Добавьте цвет'}
                   onChange={(e) => setStateColor(e.target.value)}
                 />
@@ -163,7 +296,7 @@ export const CarBlock = () => {
             <div>
               <span>Мин. стоимость</span>
               <Input
-                isError={false}
+                isError={minPriceError}
                 placeholder={'Значение'}
                 value={minPrice}
                 onChange={changeMinPrice}
@@ -172,7 +305,7 @@ export const CarBlock = () => {
             <div>
               <span>Макс. стоимость</span>
               <Input
-                isError={false}
+                isError={maxPriceError}
                 placeholder={'Значение'}
                 value={maxPrice}
                 onChange={changeMaxPrice}
@@ -190,13 +323,23 @@ export const CarBlock = () => {
             ))}
           </div>
           <div className={styles.buttons}>
-            <Button size={'s'} color={'blue'} onClick={onPostCar}>
+            <Button size={'s'} color={'blue'} onClick={onSaveCar}>
               Сохранить
             </Button>
-            <Button size={'s'}>Отменить</Button>
+            <Button size={'s'} onClick={onCancel}>
+              Отменить
+            </Button>
           </div>
         </div>
       </div>
+      <Alert
+        type={typeResponse}
+        visible={isAlert}
+        onClick={() => setIsAlert(false)}
+      >
+        {typeResponse === 'info' && 'Данные успешно сохранены'}
+        {typeResponse === 'error' && 'Произошла ошибка про сохранении'}
+      </Alert>
     </Layout>
   );
 };

@@ -12,7 +12,7 @@ import {
   IResponseCity,
   IResponsePoint,
 } from '../types/api';
-import { ICar } from '../types/actions/cars';
+import { ICategory } from '../types/actions/categories';
 
 const instanceApiFactory = axios.create({
   baseURL: 'https://api-factory.simbirsoft1.com/api',
@@ -210,23 +210,50 @@ export const postPoint = async (
   throw new Error('Получен пустой токен');
 };
 
-export const postCar = async (car: ICar) => {
-  const token = getCookie('accessToken');
-  if (token) {
-    const json = JSON.stringify(car);
-    return await instanceApiFactory.post('api/db/city', json, {
-      headers: { Authorization: token },
-    });
-  }
-  throw new Error('Получен пустой токен');
-};
-
 export const deletePoint = async (id: string) => {
   const token = getCookie('accessToken');
 
   if (token) {
     return await instanceApiFactory.delete(`/db/point/${id}`, {
       headers: { Authorization: token },
+    });
+  }
+  throw new Error('Получен пустой токен');
+};
+
+export interface ICarPost {
+  name: string;
+  description: string;
+  categoryId?: ICategory;
+  priceMax: number;
+  priceMin: number;
+  thumbnail: {
+    path: string;
+    size?: number;
+    originalname?: string;
+    mimetype?: string;
+  };
+  number: string;
+  colors: string[];
+}
+
+export const postCar = async (car: ICarPost) => {
+  const token = getCookie('accessToken');
+  if (token) {
+    const json = JSON.stringify(car);
+    return await instanceApiFactory.post('/db/car', json, {
+      headers: { Authorization: token, 'Content-Type': 'application/json' },
+    });
+  }
+  throw new Error('Получен пустой токен');
+};
+
+export const updateCar = async (car: ICarPost, id: string) => {
+  const token = getCookie('accessToken');
+  if (token) {
+    const json = JSON.stringify(car);
+    return await instanceApiFactory.put(`/db/car/${id}`, json, {
+      headers: { Authorization: token, 'Content-Type': 'application/json' },
     });
   }
   throw new Error('Получен пустой токен');
