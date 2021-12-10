@@ -121,7 +121,14 @@ export const CarBlock: React.FC<ICarBlock> = ({ car }) => {
 
   const addColor = () => {
     if (stateColor) {
-      if (colors.indexOf(stateColor.toLowerCase()) === -1) {
+      let isAdded = false;
+
+      colors.forEach((color) => {
+        if (color.toLowerCase() === stateColor.toLowerCase()) {
+          isAdded = true;
+        }
+      });
+      if (!isAdded) {
         setColors([...colors, stateColor]);
       }
     }
