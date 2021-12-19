@@ -6,13 +6,19 @@ interface ILayout {
   nameLayout: string;
 }
 
-const Layout: React.FC<ILayout> = ({ nameLayout, children }) => {
+export const Layout: React.FC<ILayout> = ({ nameLayout, children }) => {
   return (
     <div className={styles.wrapper}>
       <span className={styles.title}>{nameLayout}</span>
-      <div className={styles.block}>{children}</div>
+      {children}
     </div>
   );
 };
 
-export default Layout;
+export const LayoutTable: React.FC<ILayout> = ({ nameLayout, children }) => {
+  return (
+    <Layout nameLayout={nameLayout}>
+      <div className={styles.block}>{children}</div>
+    </Layout>
+  );
+};

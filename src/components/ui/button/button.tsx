@@ -15,6 +15,7 @@ export const Button: React.FC<IButton> = ({
       className={cn(className, styles.button, {
         [styles.red]: color === 'red',
         [styles.blue]: color === 'blue',
+        [styles.green]: color === 'green',
         [styles.buttonSize_s]: size === 's',
         [styles.buttonSize_m]: size === 'm',
       })}

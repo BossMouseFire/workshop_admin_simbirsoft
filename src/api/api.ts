@@ -1,14 +1,17 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { getCookie, tokenEncoder } from '../utils/utils';
 import {
   IRequestAuth,
   IRequestCars,
   IRequestCategories,
   IRequestPoints,
-  IResponseCars,
+  IResponseCities,
   IResponseCheck,
   IResponseOrders,
   IResponseOrderStatuses,
+  IResponseCity,
+  IResponsePoint,
+  ICarPost,
 } from '../types/api';
 
 const instanceApiFactory = axios.create({
@@ -32,32 +35,58 @@ export const loginRequest = (email: string, password: string) => {
 };
 
 export const logoutRequest = () => {
-  const token = getCookie('accessToken');
-  if (token) {
-    return instanceApiFactory.post(
-      '/auth/logout',
-      {},
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
-  }
-  throw new Error('Получен пустой токен');
+  return postRequest<any, any>('/auth/logout');
 };
 
-export const authCheck = () => {
+async function getRequest<T>(url: string): Promise<AxiosResponse<T>> {
   const token = getCookie('accessToken');
   if (token) {
-    return instanceApiFactory.get<IResponseCheck>('/auth/check', {
+    return await instanceApiFactory.get<T>(url, {
       headers: { Authorization: token },
     });
   }
   throw new Error('Получен пустой токен');
+}
+
+async function postRequest<T, V>(url: string, body?: V) {
+  const token = getCookie('accessToken');
+  if (token) {
+    const json = JSON.stringify(body);
+    return await instanceApiFactory.post<T>(url, json, {
+      headers: { Authorization: token, 'Content-Type': 'application/json' },
+    });
+  }
+  throw new Error('Получен пустой токен');
+}
+
+async function deleteRequest(url: string) {
+  const token = getCookie('accessToken');
+
+  if (token) {
+    return await instanceApiFactory.delete(url, {
+      headers: { Authorization: token },
+    });
+  }
+  throw new Error('Получен пустой токен');
+}
+
+async function updateRequest<T>(url: string, body: T) {
+  const token = getCookie('accessToken');
+  if (token) {
+    const json = JSON.stringify(body);
+    return await instanceApiFactory.put(url, json, {
+      headers: { Authorization: token, 'Content-Type': 'application/json' },
+    });
+  }
+  throw new Error('Получен пустой токен');
+}
+
+export const authCheck = async () => {
+  const url = '/auth/check';
+  return await getRequest<IResponseCheck>(url);
 };
 
-export const getCities = (page?: number, limit?: number) => {
+export const getCities = async (page?: number, limit?: number) => {
   const params: string[] = [];
 
   if (page !== undefined) {
@@ -66,34 +95,26 @@ export const getCities = (page?: number, limit?: number) => {
   if (limit !== undefined) {
     params.push(`limit=${limit}`);
   }
-  return instanceApiFactory.get<IResponseCars>(`/db/city?${params.join('&')}`);
+  const url = `/db/city?${params.join('&')}`;
+
+  return await getRequest<IResponseCities>(url);
 };
 
-export const getOrderStatuses = () => {
-  return instanceApiFactory.get<IResponseOrderStatuses>('/db/orderStatus');
+export const getOrderStatuses = async () => {
+  return await getRequest<IResponseOrderStatuses>('/db/orderStatus');
 };
 
-export const getOrders = (page: number, limit: number) => {
-  const token = getCookie('accessToken');
-  if (token) {
-    return instanceApiFactory.get<IResponseOrders>(
-      `/db/order?page=${page}&limit=${limit}`,
-      {
-        headers: { Authorization: token },
-      }
-    );
-  }
-  throw new Error('Получен пустой токен');
+export const getOrders = async (page: number, limit: number) => {
+  const url = `/db/order?page=${page}&limit=${limit}`;
+  return await getRequest<IResponseOrders>(url);
 };
 
-export const getOrdersByParams = (
+export const getOrdersByParams = async (
   page: number,
   limit: number,
   cityId?: string,
   statusId?: string
 ) => {
-  const token = getCookie('accessToken');
-
   const params: string[] = [];
 
   if (cityId !== undefined) {
@@ -103,25 +124,18 @@ export const getOrdersByParams = (
     params.push(`orderStatusId=${statusId}`);
   }
 
-  if (token) {
-    return instanceApiFactory.get<IResponseOrders>(
-      `/db/order?page=${page}&limit=${limit}&${params.join('&')}`,
-      {
-        headers: { Authorization: token },
-      }
-    );
-  }
-  throw new Error('Получен пустой токен');
+  const url = `/db/order?page=${page}&limit=${limit}&${params.join('&')}`;
+
+  return await getRequest<IResponseOrders>(url);
 };
 
 export const getCars = async (page: number, limit: number) => {
-  return await instanceApiFactory.get<IRequestCars>(
-    `/api/db/car?page=${page}&limit=${limit}`
-  );
+  const url = `/api/db/car?page=${page}&limit=${limit}`;
+  return await getRequest<IRequestCars>(url);
 };
 
 export const getCategories = async () => {
-  return await instanceApiFactory.get<IRequestCategories>('/api/db/category');
+  return await getRequest<IRequestCategories>('/db/category');
 };
 
 export const getCarsByParams = async (
@@ -134,18 +148,14 @@ export const getCarsByParams = async (
   if (categoryId != undefined) {
     params.push(`categoryId=${categoryId}`);
   }
-
-  return await instanceApiFactory.get<IRequestCars>(
-    `/api/db/car?page=${page}&limit=${limit}&${params.join('&')}`
+  return await getRequest<IRequestCars>(
+    `/db/car?page=${page}&limit=${limit}&${params.join('&')}`
   );
 };
 
 export const getPointsToCity = async (id: string) => {
-  return await instanceApiFactory.get<IRequestPoints>('/api/db/point', {
-    params: {
-      cityId: id,
-    },
-  });
+  const url = `/db/point?cityId=${id}`;
+  return await getRequest<IRequestPoints>(url);
 };
 
 export const getPointsToCities = async (ids: string[]) => {
@@ -153,7 +163,44 @@ export const getPointsToCities = async (ids: string[]) => {
   ids.map((id) => {
     params.push(`cityId=${id}`);
   });
-  return await instanceApiFactory.get<IRequestPoints>(
-    `/api/db/point?${params.join('&')}`
-  );
+  return await getRequest<IRequestPoints>(`/api/db/point?${params.join('&')}`);
+};
+
+export const postCity = async (
+  name: string
+): Promise<AxiosResponse<IResponseCity>> => {
+  return await postRequest<IResponseCity, {}>('api/db/city', { name });
+};
+
+export const deleteCity = async (id: string) => {
+  const url = `/db/city/${id}`;
+
+  return await deleteRequest(url);
+};
+
+export const postPoint = async (
+  name: string,
+  address: string,
+  cityId: string
+): Promise<AxiosResponse<IResponsePoint>> => {
+  return await postRequest<IResponsePoint, {}>('api/db/point', {
+    name,
+    cityId,
+    address,
+  });
+};
+
+export const deletePoint = async (id: string) => {
+  const url = `/db/point/${id}`;
+
+  return await deleteRequest(url);
+};
+
+export const postCar = async (car: ICarPost) => {
+  return await postRequest<never, ICarPost>('/db/car', car);
+};
+
+export const updateCar = async (car: ICarPost, id: string) => {
+  const url = `/db/car/${id}`;
+  return await updateRequest<ICarPost>(url, car);
 };

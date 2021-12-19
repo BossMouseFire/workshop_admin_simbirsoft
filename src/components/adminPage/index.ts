@@ -5,3 +5,5 @@ export { OrderBlock } from './orderBlock/orderBlock';
 export { CarsBlock } from './сarsBlock/carsBlock';
 export { CitiesBlock } from './citiesBlock/citiesBlock';
 export { ErrorBlock } from './errorBlock/errorBlock';
+export { CarBlock } from './carBlock/carBlock';
+export { CityBlock } from './cityBlock/cityBlock';
