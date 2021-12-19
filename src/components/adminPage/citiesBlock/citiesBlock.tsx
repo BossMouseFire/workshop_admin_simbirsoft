@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import Layout from '../layout/layout';
+import { LayoutTable } from '../layout/layout';
 import Upper from '../layout/upper';
 import Lower from '../layout/lower';
 import { useTypeSelector } from '../../../hooks/useTypeSelector';
@@ -73,11 +73,12 @@ export const CitiesBlock: React.FC = () => {
   };
 
   return (
-    <Layout nameLayout={'Список городов'}>
+    <LayoutTable nameLayout={'Список городов'}>
       <Upper>
         <Select
           data={cities}
           onChange={onChangeCityId}
+          sizeSelect={'10'}
           allPoints={'Все города'}
         />
         <Button size={'s'} color={'red'} onClick={refreshCities}>
@@ -99,7 +100,9 @@ export const CitiesBlock: React.FC = () => {
               <span>{city.name}</span>
               <span>
                 {convertArrayToString(
-                  points.filter((point) => point.cityId.id === city.id)
+                  points.filter(
+                    (point) => point.cityId && point.cityId.id === city.id
+                  )
                 )}
               </span>
             </div>
@@ -113,6 +116,6 @@ export const CitiesBlock: React.FC = () => {
       )}
       {!loading && !points.length && <InfoError />}
       <Lower />
-    </Layout>
+    </LayoutTable>
   );
 };

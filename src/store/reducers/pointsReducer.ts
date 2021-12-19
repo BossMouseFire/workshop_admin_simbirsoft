@@ -19,6 +19,8 @@ export const pointsReducer = (
       return { points: [], loading: true, error: null };
     case PointsActionTypes.FETCH_POINTS_SUCCESS:
       return { points: action.payload, loading: false, error: null };
+    case PointsActionTypes.ADD_POINT:
+      return { ...state, points: [...state.points, action.payload] };
     case PointsActionTypes.FETCH_POINTS_ERROR:
       return { points: [], loading: false, error: action.payload };
     default:

@@ -1,15 +1,26 @@
-.select{
-  position: relative;
-  width: 10vw;
+@mixin selectSize($width){
+  width: $width;
   @media screen and (min-width: 1024px) and (max-width: 1439px) {
-    width: 15vw;
+    width: $width * 1.5;
   }
   @media screen and (min-width: 768px) and (max-width: 1023px) {
-    width: 20vw;
+    width: $width * 2;
   }
   @media screen and (max-width: 767px) {
-    width: 26vw;
+    width: $width * 2.6;
   }
+}
+
+.selectSize_auto{
+  width: 100%;
+}
+
+.selectSize_10{
+  @include selectSize(10vw);
+}
+
+.select{
+  position: relative;
   select {
     width: 100%;
     background: none;
@@ -29,14 +40,17 @@
     @media screen and (min-width: 1024px) and (max-width: 1439px) {
       font-size: 1.3vw;
       line-height: 1.5vw;
+      padding: 0.75vw 1vw;
     }
     @media screen and (min-width: 768px) and (max-width: 1023px) {
       font-size: 1.6vw;
       line-height: 2vw;
+      padding: 1vw 1.5vw;
     }
     @media screen and (max-width: 767px) {
       font-size: 2.5vw;
       line-height: 4vw;
+      padding: 1.5vw 2vw;
     }
   }
   &:after{
@@ -90,3 +104,4 @@
     }
   }
 }
+

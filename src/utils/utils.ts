@@ -55,3 +55,16 @@ export const convertUrlImg = (path: string | undefined) => {
   }
   return path;
 };
+
+type Callback = (resp: string | ArrayBuffer) => void;
+
+export const convertImgToBase64 = (blob: Blob, callback: Callback) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(blob);
+
+  reader.onload = function () {
+    if (reader.result) {
+      callback(reader.result);
+    }
+  };
+};

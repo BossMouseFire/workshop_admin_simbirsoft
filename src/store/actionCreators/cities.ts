@@ -1,5 +1,9 @@
 import { Dispatch } from 'redux';
-import { CitiesAction, CitiesActionTypes } from '../../types/actions/cities';
+import {
+  CitiesAction,
+  CitiesActionTypes,
+  ICity,
+} from '../../types/actions/cities';
 import { getCities } from '../../api/api';
 
 export const fetchCities = (page?: number, limit?: number) => {
@@ -14,5 +18,14 @@ export const fetchCities = (page?: number, limit?: number) => {
     } catch (error) {
       dispatch({ type: CitiesActionTypes.FETCH_CITIES_ERROR, payload: error });
     }
+  };
+};
+
+export const addCity = (city: ICity) => {
+  return (dispatch: Dispatch<CitiesAction>) => {
+    dispatch({
+      type: CitiesActionTypes.ADD_CITY,
+      payload: city,
+    });
   };
 };

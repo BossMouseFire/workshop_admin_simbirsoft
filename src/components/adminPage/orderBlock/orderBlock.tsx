@@ -7,7 +7,7 @@ import { fetchOrdersByParams } from '../../../store/actionCreators/orders';
 import { OrdersList } from './ordersList/ordersList';
 import { Loader } from '../../other';
 import Pagination from '../pagination/pagination';
-import Layout from '../layout/layout';
+import { LayoutTable } from '../layout/layout';
 import Upper from '../layout/upper';
 import Lower from '../layout/lower';
 import FormLoader from '../layout/formLoader';
@@ -62,17 +62,19 @@ export const OrderBlock: React.FC = () => {
     dispatch(fetchOrdersByParams(newPage, limit, stateCity, stateStatus));
   };
   return (
-    <Layout nameLayout={'Заказы'}>
+    <LayoutTable nameLayout={'Заказы'}>
       <Upper>
         <Select
           data={cities}
           onChange={onChangeCity}
           allPoints={'Все города'}
+          sizeSelect={'10'}
         />
         <Select
           data={statuses}
           onChange={onChangeStatus}
           allPoints={'Все статусы'}
+          sizeSelect={'10'}
         />
         <Button size={'s'} color={'red'} onClick={cancelChange}>
           Сбросить
@@ -97,6 +99,6 @@ export const OrderBlock: React.FC = () => {
           isRefresh={isRefresh}
         />
       </Lower>
-    </Layout>
+    </LayoutTable>
   );
 };

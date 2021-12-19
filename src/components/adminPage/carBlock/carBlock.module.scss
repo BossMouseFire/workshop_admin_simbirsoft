@@ -1,0 +1,327 @@
+.carBlock{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 70%;
+  margin-top: 1vw;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    margin-top: 20vw;
+  }
+  .carView {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 34%;
+    height: 90%;
+    min-height: 27vw;
+    max-height: 27vw;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(90, 97, 105, 0.12);
+    border-radius: 9px;
+    padding: 1vw;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      min-height: 32vw;
+      max-height: 32vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      min-height: 38vw;
+      max-height: 38vw;
+    }
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      min-height: 65vw;
+      max-height: 65vw;
+      border-radius: 0;
+      margin-top: 50vw;
+    }
+    .preview {
+      width: 60%;
+      height: 35%;
+      align-self: center;
+      overflow-y: scroll;
+      div{
+        margin-top: 2vw;
+        text-align: center;
+        color: #818EA3;
+      }
+      @media screen and (max-width: 767px) {
+        width: 40%;
+      }
+    }
+    .prevSpan{
+      display: flex;
+      flex-direction: column;
+      span{
+        text-align: center;
+        &:nth-of-type(1){
+          font-size: 1.7vw;
+          line-height: 1.9vw;
+          color: #3D5170;
+          @media screen and (min-width: 1024px) and (max-width: 1439px) {
+            font-size: 2vw;
+            line-height: 2.2vw;
+          }
+          @media screen and (min-width: 768px) and (max-width: 1023px) {
+            font-size: 2.5vw;
+            line-height: 2.75vw;
+          }
+          @media screen and (max-width: 767px) {
+            font-size: 5vw;
+            line-height: 5.5vw;
+          }
+        }
+        &:nth-of-type(2) {
+          font-size: 0.9vw;
+          line-height: 1.1vw;
+          color: #818EA3;
+          margin-top: 0.5vw;
+          @media screen and (min-width: 1024px) and (max-width: 1439px) {
+            font-size: 1.2vw;
+            line-height: 1.4vw;
+            margin-top: 0.7vw;
+          }
+          @media screen and (min-width: 768px) and (max-width: 1023px) {
+            font-size: 1.5vw;
+            line-height: 1.75vw;
+            margin-top: 1vw;
+          }
+          @media screen and (max-width: 767px) {
+            font-size: 2.5vw;
+            line-height: 3vw;
+            margin-top: 1.5vw;
+          }
+        }
+      }
+    }
+    .inputFileBlock{
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .description{
+      display: flex;
+      flex-direction: column;
+      span{
+        font-weight: 500;
+        font-size: 1vw;
+        line-height: 1.1vw;
+        color: #868E96;
+        @media screen and (min-width: 1024px) and (max-width: 1439px) {
+          font-size: 1.3vw;
+          line-height: 1.43vw;
+        }
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+          font-size: 1.5vw;
+          line-height: 1.65vw;
+        }
+        @media screen and (max-width: 767px) {
+          font-size: 3vw;
+          line-height: 3.3vw;
+        }
+      }
+      textarea{
+        min-height: 5vw;
+        border-radius: 6px;
+        border: 0.5px solid #BECAD6;
+        margin-top: 1vw;
+        outline: none;
+        transition: all ease 0.5s;
+        padding: 0.5vw;
+
+        font-size: 1vw;
+        line-height: 1.1vw;
+        font-weight: 300;
+
+        &:focus{
+          border: 1px solid #007BFF;
+        }
+        @media screen and (min-width: 1024px) and (max-width: 1439px) {
+          min-height: 7vw;
+          font-size: 1.3vw;
+          line-height: 1.43vw;
+        }
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+          min-height: 10vw;
+          font-size: 1.5vw;
+          line-height: 1.65vw;
+          padding: .75vw;
+        }
+        @media screen and (max-width: 767px) {
+          min-height: 18vw;
+          font-size: 3vw;
+          line-height: 3.3vw;
+          padding: 1vw;
+        }
+      }
+    }
+  }
+  .carOptions {
+    display: flex;
+    flex-direction: column;
+    width: 62%;
+    height: 100%;
+    min-height: 29.8vw;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(90, 97, 105, 0.12);
+    border-radius: 9px;
+    padding: 1.3vw;
+    @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      min-height: 40vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      padding: 2vw;
+      min-height: 45vw;
+    }
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      min-height: 70vw;
+      border-radius: 0;
+      padding: 4vw;
+      margin-top: 10vw;
+    }
+    .title {
+      font-weight: 500;
+      font-size: 1.25vw;
+      line-height: 1.5vw;
+      color: #3D5170;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 1.5vw;
+        line-height: 1.7vw;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        font-size: 2vw;
+        line-height: 2.3vw;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 4vw;
+        line-height: 4.6vw;
+      }
+    }
+    .mainOptions {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1vw;
+      margin-top: 2vw;
+      @media screen and (max-width: 767px) {
+        margin-top: 4vw;
+      }
+      & > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 48%;
+
+        &:nth-of-type(1),
+        &:nth-of-type(2),
+        &:nth-of-type(5),
+        &:nth-of-type(6)
+        {
+          width: 22%;
+        }
+
+        span{
+          font-size: 1vw;
+          line-height: 1.2vw;
+          color: #495057;
+          @media screen and (min-width: 1024px) and (max-width: 1439px) {
+            font-size: 1.2vw;
+            line-height: 1.4vw;
+          }
+          @media screen and (min-width: 768px) and (max-width: 1023px) {
+            font-size: 1.5vw;
+            line-height: 1.8vw;
+          }
+          @media screen and (max-width: 767px) {
+            font-size: 3vw;
+            line-height: 3.6vw;
+          }
+        }
+        .colorButton {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+          input {
+            width: 85%;
+            @media screen and (min-width: 768px) and (max-width: 1023px) {
+              width: 80%;
+            }
+            @media screen and (max-width: 767px) {
+              width: 77%;
+            }
+          }
+          .addColor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #BECAD6;
+            border-radius: 4px;
+            width: 10%;
+            margin-top: 0.75vw;
+            cursor: pointer;
+            @media screen and (min-width: 768px) and (max-width: 1023px) {
+              width: 15%;
+            }
+            @media screen and (max-width: 767px) {
+              width: 17%;
+            }
+            svg {
+              transition: all ease 0.7s;
+              &:hover {
+                fill: #8b8e96;
+              }
+            }
+          }
+        }
+      }
+    }
+    .buttons {
+      margin-top: auto;
+      button {
+        margin-right: 1vw;
+        @media screen and (min-width: 1024px) and (max-width: 1439px) {
+          margin-right: 2vw;
+        }
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+          margin-right: 3vw;
+        }
+      }
+    }
+  }
+}
+
+.colors {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 40%;
+  margin-top: 1vw;
+  .colorCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    span {
+      font-size: 1.1vw;
+      line-height: 1.21vw;
+      font-weight: 300;
+      color: #3D5170;
+      margin-left: 1vw;
+      @media screen and (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 1.4vw;
+        line-height: 1.54vw;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        font-size: 2vw;
+        line-height: 2.2vw;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 3.5vw;
+        line-height: 3.85vw;
+      }
+    }
+  }
+}

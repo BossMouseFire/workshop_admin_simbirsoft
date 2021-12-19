@@ -58,6 +58,14 @@
       &:nth-of-type(1){
         color: #3D5170;
       }
+      &:nth-of-type(2) {
+        cursor: pointer;
+        color: #818EA3;
+        transition: color ease 0.4s;
+        &:hover{
+          color: #4d5362;
+        }
+      }
       @media screen and (max-width: 767px) {
         width: 12%;
       }
